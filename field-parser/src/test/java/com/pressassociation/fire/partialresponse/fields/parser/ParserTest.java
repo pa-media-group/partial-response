@@ -35,6 +35,7 @@ public class ParserTest {
             .add(correct("items/pagemap/*"))
             .add(correct("items(id)"))
             .add(correct("items/id"))
+            .add(correct("items(id,altId)/authority"))
             .add(incorrect(""))
             .add(incorrect("**"))
             .add(incorrect("*/"))

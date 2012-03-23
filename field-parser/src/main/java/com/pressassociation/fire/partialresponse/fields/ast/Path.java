@@ -10,20 +10,20 @@ import static com.google.common.base.Preconditions.checkNotNull;
  * @author Matt Nathan
  */
 public class Path extends Field {
-  private final Node node;
-  private final Field field;
+  private final Node prefix;
+  private final Field suffix;
 
-  public Path(Node node, Field field) {
-    this.node = checkNotNull(node);
-    this.field = checkNotNull(field);
+  public Path(Node prefix, Field suffix) {
+    this.prefix = checkNotNull(prefix);
+    this.suffix = checkNotNull(suffix);
   }
 
-  public Node getNode() {
-    return node;
+  public Node getPrefix() {
+    return prefix;
   }
 
-  public Field getField() {
-    return field;
+  public Field getSuffix() {
+    return suffix;
   }
 
   @Override

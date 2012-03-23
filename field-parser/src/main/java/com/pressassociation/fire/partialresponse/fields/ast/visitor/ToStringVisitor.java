@@ -7,28 +7,31 @@ import com.pressassociation.fire.partialresponse.fields.ast.*;
  *
  * @author Matt Nathan
  */
-public class ToStringVisitor extends AstVisitor {
+public class ToStringVisitor extends TransformingVisitor<String> {
   @SuppressWarnings("StringBufferField")
   private final StringBuilder buffer = new StringBuilder();
 
   @Override
-  protected void afterSubSelectionFields(Node node) {
+  protected void afterSubSelectionFields(SubSelection subSelection) {
     buffer.append(')');
   }
 
   @Override
-  protected void beforePathField(Path field) {
+  protected boolean beforePathField(Path path) {
     buffer.append('/');
+    return true;
   }
 
   @Override
-  protected void beforeFieldsNext(Fields fields) {
+  protected boolean beforeFieldsNext(Fields fields) {
     buffer.append(',');
+    return true;
   }
 
   @Override
-  protected void beforeSubSelectionFields(Node node) {
+  protected boolean beforeSubSelectionFields(SubSelection subSelection) {
     buffer.append('(');
+    return true;
   }
 
   @Override
@@ -42,7 +45,7 @@ public class ToStringVisitor extends AstVisitor {
   }
 
   @Override
-  public String toString() {
+  public String getResult() {
     return buffer.toString();
   }
 }

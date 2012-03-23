@@ -16,9 +16,7 @@ public abstract class AstNode {
 
   @Override
   public String toString() {
-    ToStringVisitor visitor = new ToStringVisitor();
-    apply(visitor);
-    return visitor.toString();
+    return new ToStringVisitor().applyTo(this);
   }
 
   /**

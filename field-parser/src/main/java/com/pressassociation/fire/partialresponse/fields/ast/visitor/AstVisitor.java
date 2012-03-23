@@ -10,36 +10,39 @@ import com.pressassociation.fire.partialresponse.fields.ast.*;
 public abstract class AstVisitor {
   public void visitFields(Fields fields) {
     fields.getField().apply(this);
-    beforeFieldsNext(fields);
-    fields.getNext().apply(this);
+    if (beforeFieldsNext(fields)) {
+      fields.getNext().apply(this);
+    }
   }
 
-  protected void beforeFieldsNext(Fields fields) {
-    // empty
+  protected boolean beforeFieldsNext(Fields fields) {
+    return true;
   }
 
-  public void visitPath(Path field) {
-    field.getNode().apply(this);
-    beforePathField(field);
-    field.getField().apply(this);
+  public void visitPath(Path path) {
+    path.getPrefix().apply(this);
+    if (beforePathField(path)) {
+      path.getSuffix().apply(this);
+    }
   }
 
-  protected void beforePathField(Path field) {
-    // empty
+  protected boolean beforePathField(Path path) {
+    return true;
   }
 
-  public void visitSubSelection(SubSelection node) {
-    node.getName().apply(this);
-    beforeSubSelectionFields(node);
-    node.getFields().apply(this);
-    afterSubSelectionFields(node);
+  public void visitSubSelection(SubSelection subSelection) {
+    subSelection.getName().apply(this);
+    if (beforeSubSelectionFields(subSelection)) {
+      subSelection.getFields().apply(this);
+      afterSubSelectionFields(subSelection);
+    }
   }
 
-  protected void beforeSubSelectionFields(Node node) {
-    // empty
+  protected boolean beforeSubSelectionFields(SubSelection subSelection) {
+    return true;
   }
 
-  protected void afterSubSelectionFields(Node node) {
+  protected void afterSubSelectionFields(SubSelection subSelection) {
     // empty
   }
 
