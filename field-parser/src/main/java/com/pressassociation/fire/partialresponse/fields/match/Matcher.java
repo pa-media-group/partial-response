@@ -2,9 +2,6 @@ package com.pressassociation.fire.partialresponse.fields.match;
 
 import com.google.common.base.Objects;
 import com.google.common.base.Predicate;
-import com.google.common.base.Splitter;
-import com.pressassociation.fire.partialresponse.fields.ast.AstNode;
-import com.pressassociation.fire.partialresponse.fields.ast.visitor.MatchesPathVisitor;
 import com.pressassociation.fire.partialresponse.fields.parser.Parser;
 
 import javax.annotation.Nullable;
@@ -23,38 +20,8 @@ public abstract class Matcher implements Predicate<CharSequence> {
    */
   @SuppressWarnings("UtilityClassWithoutPrivateConstructor")
   private static final class Holder {
-    private static final Matcher ALL_INSTANCE = new Matcher() {
-      @Override
-      public boolean matches(CharSequence path) {
-        return true;
-      }
-
-      @Override
-      protected String patternString() {
-        return "*";
-      }
-    };
+    private static final Matcher ALL_INSTANCE = new AllMatcher();
   }
-
-  private static final class AstMatcher extends Matcher {
-    private final AstNode fields;
-
-    private AstMatcher(AstNode fields) {
-      this.fields = checkNotNull(fields);
-    }
-
-    @Override
-    public boolean matches(CharSequence input) {
-      return new MatchesPathVisitor(PATH_SPLITTER.split(input)).applyTo(fields);
-    }
-
-    @Override
-    protected String patternString() {
-      return fields.toString();
-    }
-  }
-
-  private static final Splitter PATH_SPLITTER = Splitter.on('/').omitEmptyStrings();
 
   /**
    * Return a matcher that will match all paths.
