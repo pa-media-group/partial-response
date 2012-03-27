@@ -13,7 +13,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
  */
 class AstMatcher extends Matcher {
   private static final Splitter PATH_SPLITTER = Splitter.on('/').omitEmptyStrings();
-  private final AstNode fields;
+  final AstNode fields;
 
   AstMatcher(AstNode fields) {
     this.fields = checkNotNull(fields);
