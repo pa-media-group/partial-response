@@ -1,6 +1,5 @@
 package com.pressassociation.fire.partialresponse.fields.ast.visitor;
 
-import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 import com.pressassociation.fire.partialresponse.fields.ast.*;
 
@@ -9,7 +8,7 @@ import java.util.Deque;
 import static com.google.common.base.Preconditions.checkState;
 
 /**
- * Generated JavaDoc Comment.
+ * Visitor that copies (deeply) the nodes of an ast.
  *
  * @author Matt Nathan
  */

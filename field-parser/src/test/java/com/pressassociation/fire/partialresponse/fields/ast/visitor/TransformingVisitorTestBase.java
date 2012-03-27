@@ -40,6 +40,10 @@ public abstract class TransformingVisitorTestBase<V extends TransformingVisitor<
   public void testTransformation() {
     AstNode sourceNode = parser.parse(source);
     T resultNode = createVisitor().applyTo(sourceNode);
+    checkResult(sourceNode, resultNode);
+  }
+
+  protected void checkResult(AstNode sourceNode, T resultNode) {
     assertEquals("For source " + source, expected, toString(resultNode));
   }
 
