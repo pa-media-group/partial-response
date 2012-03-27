@@ -13,7 +13,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
  *
  * @author Matt Nathan
  */
-public abstract class Matcher implements Predicate<CharSequence> {
+public abstract class Matcher implements Predicate<Leaf> {
 
   /**
    * Holder of lazy singletons
@@ -47,10 +47,10 @@ public abstract class Matcher implements Predicate<CharSequence> {
     return new AstMatcher(new Parser().parse(checkNotNull(fields)));
   }
 
-  public abstract boolean matches(CharSequence path);
+  public abstract boolean matches(Leaf leaf);
 
   @Override
-  public boolean apply(@Nullable CharSequence input) {
+  public boolean apply(@Nullable Leaf input) {
     return input != null && matches(input);
   }
 

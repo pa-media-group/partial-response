@@ -7,7 +7,7 @@ package com.pressassociation.fire.partialresponse.fields.match;
  */
 class AllMatcher extends Matcher {
   @Override
-  public boolean matches(CharSequence path) {
+  public boolean matches(Leaf path) {
     return true;
   }
 

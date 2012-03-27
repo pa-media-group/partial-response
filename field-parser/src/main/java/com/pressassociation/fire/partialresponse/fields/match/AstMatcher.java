@@ -12,7 +12,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
  * @author Matt Nathan
  */
 class AstMatcher extends Matcher {
-  private static final Splitter PATH_SPLITTER = Splitter.on('/').omitEmptyStrings();
   final AstNode fields;
 
   AstMatcher(AstNode fields) {
@@ -20,8 +19,8 @@ class AstMatcher extends Matcher {
   }
 
   @Override
-  public boolean matches(CharSequence input) {
-    return new MatchesPathVisitor(PATH_SPLITTER.split(input)).applyTo(fields);
+  public boolean matches(Leaf input) {
+    return new MatchesPathVisitor(input.getPath()).applyTo(fields);
   }
 
   @Override
