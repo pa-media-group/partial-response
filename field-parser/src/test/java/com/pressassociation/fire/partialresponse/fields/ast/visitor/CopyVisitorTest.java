@@ -2,7 +2,6 @@ package com.pressassociation.fire.partialresponse.fields.ast.visitor;
 
 import com.google.common.collect.ImmutableList;
 import com.pressassociation.fire.partialresponse.fields.ast.AstNode;
-import org.junit.Assert;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
