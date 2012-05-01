@@ -34,7 +34,7 @@ public class MatchesPathVisitor extends TransformingVisitor<Boolean> {
     } else {
       // if we still don't match then reset the path index the the one from the parent stack.
       pathIndexStack.removeLast();
-      pathIndexStack.add(firstNonNull(pathIndexStack.peek(), 0));
+      pathIndexStack.add(firstNonNull(pathIndexStack.peekLast(), 0));
       return true;
     }
   }
@@ -48,7 +48,7 @@ public class MatchesPathVisitor extends TransformingVisitor<Boolean> {
   protected boolean beforeSubSelectionFields(SubSelection subSelection) {
     boolean matches = matches();
     if (matches) {
-      pathIndexStack.addLast(pathIndexStack.peek());
+      pathIndexStack.addLast(pathIndexStack.peekLast());
       matchesStack.addLast(matches);
       return true;
     } else {
@@ -59,7 +59,7 @@ public class MatchesPathVisitor extends TransformingVisitor<Boolean> {
   @Override
   protected void afterSubSelectionFields(SubSelection subSelection) {
     int index = pathIndexStack.removeLast();
-    pathIndexStack.removeFirst();
+    pathIndexStack.removeLast();
     pathIndexStack.addLast(index);
     setMatches(matchesStack.removeLast());
   }
