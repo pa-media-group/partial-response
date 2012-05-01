@@ -92,6 +92,8 @@ public class MatchesPathVisitorTest extends TransformingVisitorTestBase<MatchesP
     // [61] About as complicated as I can make it
     builder.add(has("a/b/c/d/e/f", "a/b(*/d,c)/not,a(1,2,*/d)/*(f,g)"))
            .add(not("a/b/c/d/e/other", "a/b(*/d,c)/not,a(1,2,b(c/not),*/d)/*(f,g)"));
+    // [63] Bugs that have been found through use
+    builder.add(has("li/notablyAssociatedWith/label", "li(label,notablyAssociatedWith(label))"));
     return builder.build();
   }
 
