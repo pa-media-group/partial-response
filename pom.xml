@@ -7,7 +7,7 @@
   <parent>
     <artifactId>fire</artifactId>
     <groupId>com.pressassociation.fire</groupId>
-    <version>latest-SNAPSHOT</version>
+    <version>3.3-SNAPSHOT</version>
   </parent>
 
   <artifactId>partial-response</artifactId>
