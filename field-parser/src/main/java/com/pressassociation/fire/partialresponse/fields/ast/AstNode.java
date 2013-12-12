@@ -41,7 +41,7 @@ public abstract class AstNode {
   }
 
   /**
-   * Uses the string representation to compute the hash
+   * Uses the string representation to compute the hash.
    *
    * @return The hash code.
    */

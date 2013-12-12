@@ -9,6 +9,11 @@
 
   <artifactId>field-parser</artifactId>
 
+  <properties>
+    <!-- HACK: Need to override this property in all sub-modules to resolve to the same path -->
+    <codestyle.basedir>${project.basedir}/../codestyle</codestyle.basedir>
+  </properties>
+
   <dependencies>
     <dependency>
       <groupId>com.google.code.findbugs</groupId>

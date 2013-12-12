@@ -1,7 +1,7 @@
 package com.pressassociation.fire.partialresponse.fields.match;
 
 /**
- * Matcher implementation that matches all paths
+ * Matcher implementation that matches all paths.
  *
  * @author Matt Nathan
  */

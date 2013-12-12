@@ -5,7 +5,7 @@ import com.pressassociation.fire.partialresponse.fields.ast.*;
 import com.pressassociation.fire.partialresponse.fields.parser.Parser;
 
 /**
- * Postfix some node to the visited nodes
+ * Postfix some node to the visited nodes.
  * <p/>
  * For example:<br/>
  * items/id,items/name with a postfix value of type will become items/id/type,items/name/type<br/>

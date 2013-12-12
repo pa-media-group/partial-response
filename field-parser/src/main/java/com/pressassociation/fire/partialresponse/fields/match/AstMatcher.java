@@ -6,7 +6,7 @@ import com.pressassociation.fire.partialresponse.fields.ast.visitor.MatchesPathV
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
- * Matcher based of a PartialResponse Ast
+ * Matcher based of a PartialResponse Ast.
  *
  * @author Matt Nathan
  */

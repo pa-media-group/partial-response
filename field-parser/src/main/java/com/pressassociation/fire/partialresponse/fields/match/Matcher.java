@@ -16,7 +16,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 public abstract class Matcher implements Predicate<Leaf> {
 
   /**
-   * Holder of lazy singletons
+   * Holder of lazy singletons.
    */
   @SuppressWarnings("UtilityClassWithoutPrivateConstructor")
   private static final class Holder {

@@ -5,6 +5,7 @@ import com.pressassociation.fire.partialresponse.fields.ast.AstNode;
 /**
  * A visitor that produces some kind of output from the visitation of the ast.
  *
+ * @param <T> The result type
  * @author Matt Nathan
  */
 public abstract class TransformingVisitor<T> extends AstVisitor {

@@ -6,7 +6,7 @@ import com.pressassociation.fire.partialresponse.fields.ast.*;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
- * Parser for the getNext value
+ * Parser for the getNext value.
  *
  * @author Matt Nathan
  */

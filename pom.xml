@@ -59,6 +59,14 @@
     <module>field-parser</module>
   </modules>
 
+  <properties>
+    <!-- HACK: Need to override this property in all sub-modules to resolve to the same path -->
+    <codestyle.basedir>${project.basedir}/codestyle</codestyle.basedir>
+
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+  </properties>
+
   <dependencyManagement>
     <dependencies>
       <!-- Utility functionality -->
@@ -128,5 +136,25 @@
       </extension>
     </extensions>
 
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+        <version>2.10</version>
+        <configuration>
+          <configLocation>${codestyle.basedir}/checkstyle.xml</configLocation>
+          <consoleOutput>true</consoleOutput>
+          <suppressionsLocation>${codestyle.basedir}/checkstyle-suppressions.xml</suppressionsLocation>
+          <enableRulesSummary>false</enableRulesSummary>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
   </build>
 </project>
