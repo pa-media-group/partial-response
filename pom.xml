@@ -7,6 +7,54 @@
   <version>3.8-SNAPSHOT</version>
   <packaging>pom</packaging>
 
+  <scm>
+    <connection>scm:git:git@github.com:PressAssociation/partial-response.git</connection>
+    <developerConnection>scm:git:git@github.com:PressAssociation/partial-response.git</developerConnection>
+    <url>https://github.com/PressAssociation/partial-response</url>
+  </scm>
+
+  <issueManagement>
+    <system>GitHub</system>
+    <url>https://github.com/PressAssociation/partial-response/issues</url>
+  </issueManagement>
+
+  <ciManagement>
+    <system>Bamboo</system>
+    <url>http://bamboo.howden.press.net/</url>
+  </ciManagement>
+
+  <repositories>
+    <repository>
+      <id>com.pressassociation.nexus.releases</id>
+      <name>Maven Central Compatible PA Releases Repository</name>
+      <url>http://nexus.howden.press.net/nexus/content/repositories/releases</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+    <repository>
+      <id>com.pressassociation.nexus.snapshots</id>
+      <name>Maven Central Compatible PA Snapshots Repository</name>
+      <url>http://nexus.howden.press.net/nexus/content/repositories/snapshots</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+    </repository>
+  </repositories>
+
+  <distributionManagement>
+    <repository>
+      <id>pressassociation.releases</id>
+      <name>Nexus Release Repo</name>
+      <url>http://nexus.howden.press.net/nexus/content/repositories/releases</url>
+    </repository>
+    <snapshotRepository>
+      <id>pressassociation.snapshots</id>
+      <name>Nexus Snapshot Repo</name>
+      <url>http://nexus.howden.press.net/nexus/content/repositories/snapshots</url>
+    </snapshotRepository>
+  </distributionManagement>
+
   <modules>
     <module>field-parser</module>
   </modules>
