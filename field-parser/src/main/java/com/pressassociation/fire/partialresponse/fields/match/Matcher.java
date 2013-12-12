@@ -2,6 +2,7 @@ package com.pressassociation.fire.partialresponse.fields.match;
 
 import com.google.common.base.Objects;
 import com.google.common.base.Predicate;
+
 import com.pressassociation.fire.partialresponse.fields.parser.Parser;
 
 import javax.annotation.Nullable;

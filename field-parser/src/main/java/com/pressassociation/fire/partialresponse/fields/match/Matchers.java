@@ -1,6 +1,7 @@
 package com.pressassociation.fire.partialresponse.fields.match;
 
 import com.google.common.base.Function;
+
 import com.pressassociation.fire.partialresponse.fields.ast.AstNode;
 import com.pressassociation.fire.partialresponse.fields.ast.Word;
 import com.pressassociation.fire.partialresponse.fields.ast.visitor.CopyVisitor;

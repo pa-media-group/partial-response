@@ -2,6 +2,7 @@ package com.pressassociation.fire.partialresponse.fields.ast;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.testing.NullPointerTester;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,13 +20,13 @@ public class AstNullPointerTest {
   @Parameterized.Parameters
   public static Collection<Object[]> parameters() {
     return ImmutableList.of(
-            new Object[] {Fields.class, new Fields(Wildcard.getSharedInstance(), Wildcard.getSharedInstance())},
-            new Object[] {Path.class, new Path(Wildcard.getSharedInstance(), Wildcard.getSharedInstance())},
-            new Object[] {
-                    SubSelection.class, new SubSelection(Wildcard.getSharedInstance(), Wildcard.getSharedInstance())
-            },
-            new Object[] {Wildcard.class, Wildcard.getSharedInstance()},
-            new Object[] {Word.class, new Word("word")});
+        new Object[]{Fields.class, new Fields(Wildcard.getSharedInstance(), Wildcard.getSharedInstance())},
+        new Object[]{Path.class, new Path(Wildcard.getSharedInstance(), Wildcard.getSharedInstance())},
+        new Object[]{
+            SubSelection.class, new SubSelection(Wildcard.getSharedInstance(), Wildcard.getSharedInstance())
+        },
+        new Object[]{Wildcard.class, Wildcard.getSharedInstance()},
+        new Object[]{Word.class, new Word("word")});
   }
 
   private NullPointerTester tester;

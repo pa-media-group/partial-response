@@ -1,6 +1,7 @@
 package com.pressassociation.fire.partialresponse.fields.parser;
 
 import com.google.common.testing.NullPointerTester;
+
 import org.junit.Test;
 
 /**

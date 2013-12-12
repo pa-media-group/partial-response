@@ -1,6 +1,7 @@
 package com.pressassociation.fire.partialresponse.fields.parser;
 
 import com.google.common.base.CharMatcher;
+
 import com.pressassociation.fire.partialresponse.fields.ast.*;
 
 import static com.google.common.base.Preconditions.checkNotNull;

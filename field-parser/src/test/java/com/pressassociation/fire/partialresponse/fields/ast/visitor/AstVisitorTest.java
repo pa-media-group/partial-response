@@ -2,6 +2,7 @@ package com.pressassociation.fire.partialresponse.fields.ast.visitor;
 
 import com.pressassociation.fire.partialresponse.fields.ast.*;
 import com.pressassociation.fire.partialresponse.fields.parser.Parser;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -40,9 +41,9 @@ public class AstVisitorTest {
     verify(visitor).visitWord(new Word("name"));
     verify(visitor).visitSubSelection(new SubSelection(new Word("item"), new Fields(new Word("id"), new Word("name"))));
     verify(visitor).beforeSubSelectionFields(
-            new SubSelection(new Word("item"), new Fields(new Word("id"), new Word("name"))));
+        new SubSelection(new Word("item"), new Fields(new Word("id"), new Word("name"))));
     verify(visitor).afterSubSelectionFields(
-            new SubSelection(new Word("item"), new Fields(new Word("id"), new Word("name"))));
+        new SubSelection(new Word("item"), new Fields(new Word("id"), new Word("name"))));
     verify(visitor).visitFields(new Fields(new Word("id"), new Word("name")));
     verify(visitor).beforeFieldsNext(new Fields(new Word("id"), new Word("name")));
 

@@ -1,10 +1,12 @@
 package com.pressassociation.fire.partialresponse.fields.ast.visitor;
 
 import com.google.common.collect.ImmutableList;
+
 import com.pressassociation.fire.partialresponse.fields.ast.AstNode;
 import com.pressassociation.fire.partialresponse.fields.ast.Field;
 import com.pressassociation.fire.partialresponse.fields.ast.Node;
 import com.pressassociation.fire.partialresponse.fields.ast.Word;
+
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 

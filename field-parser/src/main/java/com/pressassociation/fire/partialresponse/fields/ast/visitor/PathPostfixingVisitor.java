@@ -1,6 +1,7 @@
 package com.pressassociation.fire.partialresponse.fields.ast.visitor;
 
 import com.google.common.base.Preconditions;
+
 import com.pressassociation.fire.partialresponse.fields.ast.*;
 import com.pressassociation.fire.partialresponse.fields.parser.Parser;
 

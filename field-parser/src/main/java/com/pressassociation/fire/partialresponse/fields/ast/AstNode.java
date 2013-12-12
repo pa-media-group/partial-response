@@ -1,6 +1,7 @@
 package com.pressassociation.fire.partialresponse.fields.ast;
 
 import com.google.common.base.Objects;
+
 import com.pressassociation.fire.partialresponse.fields.ast.visitor.AstVisitor;
 import com.pressassociation.fire.partialresponse.fields.ast.visitor.ToStringVisitor;
 

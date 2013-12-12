@@ -1,6 +1,7 @@
 package com.pressassociation.fire.partialresponse.fields.ast.visitor;
 
 import com.google.common.collect.ImmutableList;
+
 import com.pressassociation.fire.partialresponse.fields.ast.*;
 
 import java.util.ArrayDeque;

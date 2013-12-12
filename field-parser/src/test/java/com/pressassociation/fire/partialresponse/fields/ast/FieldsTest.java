@@ -1,6 +1,7 @@
 package com.pressassociation.fire.partialresponse.fields.ast;
 
 import com.google.common.testing.EqualsTester;
+
 import org.junit.Test;
 
 /**
@@ -13,10 +14,10 @@ public class FieldsTest {
   @Test
   public void testEquality() {
     new EqualsTester()
-            .addEqualityGroup(new Fields(new Word("name"), new Word("value")),
-                              new Fields(new Word("name"), new Word("value")))
-            .addEqualityGroup(new Fields(Wildcard.getSharedInstance(), Wildcard.getSharedInstance()),
-                              new Fields(Wildcard.getSharedInstance(), Wildcard.getSharedInstance()))
-            .testEquals();
+        .addEqualityGroup(new Fields(new Word("name"), new Word("value")),
+                          new Fields(new Word("name"), new Word("value")))
+        .addEqualityGroup(new Fields(Wildcard.getSharedInstance(), Wildcard.getSharedInstance()),
+                          new Fields(Wildcard.getSharedInstance(), Wildcard.getSharedInstance()))
+        .testEquals();
   }
 }

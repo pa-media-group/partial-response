@@ -1,7 +1,9 @@
 package com.pressassociation.fire.partialresponse.fields.ast.visitor;
 
 import com.google.common.collect.ImmutableList;
+
 import com.pressassociation.fire.partialresponse.fields.ast.AstNode;
+
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
@@ -20,8 +22,8 @@ public class CopyVisitorTest extends TransformingVisitorTestBase<CopyVisitor, As
   public static Collection<Object[]> data() {
     // can't put * on it's own here because Wildcard is a singleton
     return ImmutableList.of(
-            args("item", "item"),
-            args("item,items/id,other(id,value),*/title", "item,items/id,other(id,value),*/title"));
+        args("item", "item"),
+        args("item,items/id,other(id,value),*/title", "item,items/id,other(id,value),*/title"));
   }
 
   public CopyVisitorTest(String source, String expected) {

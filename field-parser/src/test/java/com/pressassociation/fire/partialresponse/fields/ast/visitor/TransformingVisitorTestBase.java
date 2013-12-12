@@ -2,6 +2,7 @@ package com.pressassociation.fire.partialresponse.fields.ast.visitor;
 
 import com.pressassociation.fire.partialresponse.fields.ast.AstNode;
 import com.pressassociation.fire.partialresponse.fields.parser.Parser;
+
 import org.junit.Before;
 import org.junit.Test;
 

@@ -1,6 +1,7 @@
 package com.pressassociation.fire.partialresponse.fields.parser;
 
 import com.google.common.collect.ImmutableList;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -21,41 +22,41 @@ public class ParserTest {
   @Parameterized.Parameters
   public static Collection<Object[]> parameters() {
     return ImmutableList.<Object[]>builder()
-            // these are the examples given in the google documentation
-            .add(correct("items"))
-            .add(correct("etag,items"))
-            .add(correct("items/title"))
-            .add(correct("context/facets/label"))
-            .add(correct("items/pagemap/*/title"))
-            .add(correct("title"))
-            .add(correct("author/uri"))
-            .add(correct("links/*/href"))
-            .add(correct("items(title,author/uri)"))
-            .add(correct("kind,items(title,characteristics/length)"))
-            .add(correct("items/pagemap/*"))
-            .add(correct("items(id)"))
-            .add(correct("items/id"))
-            .add(correct("items(id,altId)/authority"))
-            .add(incorrect(""))
-            .add(incorrect("**"))
-            .add(incorrect("*/"))
-            .add(incorrect("/name"))
-            .add(incorrect("//name"))
-            .add(incorrect("//"))
-            .add(incorrect("()"))
-            .add(incorrect("items()"))
-            .add(incorrect("items(id)*"))
-            .add(incorrect("items(id"))
-            .add(incorrect("items(id*"))
-            .build();
+        // these are the examples given in the google documentation
+        .add(correct("items"))
+        .add(correct("etag,items"))
+        .add(correct("items/title"))
+        .add(correct("context/facets/label"))
+        .add(correct("items/pagemap/*/title"))
+        .add(correct("title"))
+        .add(correct("author/uri"))
+        .add(correct("links/*/href"))
+        .add(correct("items(title,author/uri)"))
+        .add(correct("kind,items(title,characteristics/length)"))
+        .add(correct("items/pagemap/*"))
+        .add(correct("items(id)"))
+        .add(correct("items/id"))
+        .add(correct("items(id,altId)/authority"))
+        .add(incorrect(""))
+        .add(incorrect("**"))
+        .add(incorrect("*/"))
+        .add(incorrect("/name"))
+        .add(incorrect("//name"))
+        .add(incorrect("//"))
+        .add(incorrect("()"))
+        .add(incorrect("items()"))
+        .add(incorrect("items(id)*"))
+        .add(incorrect("items(id"))
+        .add(incorrect("items(id*"))
+        .build();
   }
 
   private static Object[] correct(String s) {
-    return new Object[] {s, true};
+    return new Object[]{s, true};
   }
 
   private static Object[] incorrect(String s) {
-    return new Object[] {s, false};
+    return new Object[]{s, false};
   }
 
   private final String pattern;
