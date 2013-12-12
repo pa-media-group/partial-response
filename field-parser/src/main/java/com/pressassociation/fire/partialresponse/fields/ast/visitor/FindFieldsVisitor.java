@@ -4,10 +4,12 @@ import com.google.common.base.Function;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
+
 import com.pressassociation.fire.partialresponse.fields.ast.*;
 
-import javax.annotation.Nullable;
 import java.util.List;
+
+import javax.annotation.Nullable;
 
 import static com.google.common.base.Objects.firstNonNull;
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -24,6 +26,7 @@ import static com.google.common.base.Preconditions.checkState;
  * @author Matt Nathan
  */
 public class FindFieldsVisitor extends TransformingVisitor<Iterable<Field>> {
+
   // this visitor only works because we are assuming that all sub-selections have already been expanded
   private final List<Fields> result = Lists.newArrayList();
   private Field last;
