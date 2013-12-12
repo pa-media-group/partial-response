@@ -1,0 +1,7 @@
+out
+.*/target
+atlassian-ide-plugin\.xml
+.*\.iml
+\.idea
+dev-ts.properties
+log4j.local.properties
