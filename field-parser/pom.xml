@@ -8,6 +8,8 @@
   </parent>
 
   <artifactId>field-parser</artifactId>
+  <name>Partial Response: Field parser</name>
+  <description>Library for parsing a partial response string and basic matching of the result</description>
 
   <properties>
     <!-- HACK: Need to override this property in all sub-modules to resolve to the same path -->
