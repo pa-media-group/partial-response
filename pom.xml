@@ -1,17 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.sonatype.oss</groupId>
+    <artifactId>oss-parent</artifactId>
+    <version>9</version>
+  </parent>
 
   <groupId>com.pressassociation.partial-response</groupId>
   <artifactId>partial-response</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
+  <name>partial-response parent</name>
+  <description>Parent pom for the partial-response project</description>
+  <inceptionYear>2012</inceptionYear>
+  <url>https://github.com/PressAssociation/partial-response</url>
+
+  <licenses>
+    <license>
+      <name>The MIT License</name>
+      <url>http://www.opensource.org/licenses/mit-license.php</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
   <scm>
     <connection>scm:git:git@github.com:PressAssociation/partial-response.git</connection>
     <developerConnection>scm:git:git@github.com:PressAssociation/partial-response.git</developerConnection>
     <url>https://github.com/PressAssociation/partial-response</url>
   </scm>
+
+  <developers>
+    <developer>
+      <id>mattnathan</id>
+      <name>Matt Nathan</name>
+      <email>matt.nathan+partial-response@gmail.com</email>
+      <organization>Press Association</organization>
+      <organizationUrl>http://pressassociation.com</organizationUrl>
+      <roles>
+        <role>owner</role>
+        <role>developer</role>
+      </roles>
+      <timezone>0</timezone>
+    </developer>
+  </developers>
 
   <issueManagement>
     <system>GitHub</system>
@@ -23,38 +56,6 @@
     <url>http://bamboo.howden.press.net/</url>
   </ciManagement>
 
-  <repositories>
-    <repository>
-      <id>com.pressassociation.nexus.releases</id>
-      <name>Maven Central Compatible PA Releases Repository</name>
-      <url>http://nexus.howden.press.net/nexus/content/repositories/releases</url>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-    </repository>
-    <repository>
-      <id>com.pressassociation.nexus.snapshots</id>
-      <name>Maven Central Compatible PA Snapshots Repository</name>
-      <url>http://nexus.howden.press.net/nexus/content/repositories/snapshots</url>
-      <releases>
-        <enabled>true</enabled>
-      </releases>
-    </repository>
-  </repositories>
-
-  <distributionManagement>
-    <repository>
-      <id>pressassociation.releases</id>
-      <name>Nexus Release Repo</name>
-      <url>http://nexus.howden.press.net/nexus/content/repositories/releases</url>
-    </repository>
-    <snapshotRepository>
-      <id>pressassociation.snapshots</id>
-      <name>Nexus Snapshot Repo</name>
-      <url>http://nexus.howden.press.net/nexus/content/repositories/snapshots</url>
-    </snapshotRepository>
-  </distributionManagement>
-
   <modules>
     <module>field-parser</module>
   </modules>
@@ -63,7 +64,6 @@
     <!-- HACK: Need to override this property in all sub-modules to resolve to the same path -->
     <codestyle.basedir>${project.basedir}/codestyle</codestyle.basedir>
 
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
   </properties>
 
