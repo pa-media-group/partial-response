@@ -3,7 +3,8 @@ package com.pressassociation.fire.partialresponse.fields.ast.visitor;
 import com.pressassociation.fire.partialresponse.fields.ast.*;
 
 /**
- * Generated JavaDoc Comment.
+ * Generates a string representation of the visited AST. While the output string may not be equal to the pattern that
+ * was used to generate the AST it will be functionally equivalent.
  *
  * @author Matt Nathan
  */

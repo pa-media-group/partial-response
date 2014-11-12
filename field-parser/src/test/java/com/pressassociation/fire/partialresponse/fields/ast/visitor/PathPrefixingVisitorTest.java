@@ -13,7 +13,7 @@ import org.junit.runners.Parameterized;
 import java.util.Collection;
 
 /**
- * Tests for the PathPrefixingVisitor.
+ * Tests for {@link PathPrefixingVisitor}.
  *
  * @author Matt Nathan
  */

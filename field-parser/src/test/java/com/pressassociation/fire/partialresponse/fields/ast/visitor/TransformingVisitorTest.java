@@ -5,7 +5,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 /**
- * Generated JavaDoc Comment.
+ * Tests for {@link TransformingVisitor}.
  *
  * @author Matt Nathan
  */

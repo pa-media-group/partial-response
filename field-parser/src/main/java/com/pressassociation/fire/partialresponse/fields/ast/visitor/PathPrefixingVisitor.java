@@ -8,7 +8,7 @@ import static com.google.common.base.Preconditions.checkState;
  * Prepends a prefix to the visited ast.
  * <p/>
  * For example:
- * items/id with prefix nested becomes nested/items/id
+ * {@code items/id} with prefix {@code nested} becomes {@code nested/items/id}
  *
  * @author Matt Nathan
  */

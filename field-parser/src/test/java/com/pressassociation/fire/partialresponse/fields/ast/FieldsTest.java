@@ -5,7 +5,7 @@ import com.google.common.testing.EqualsTester;
 import org.junit.Test;
 
 /**
- * Generated JavaDoc Comment.
+ * Tests for {@link Fields}.
  *
  * @author Matt Nathan
  */

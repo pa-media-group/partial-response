@@ -7,6 +7,8 @@ import com.pressassociation.fire.partialresponse.fields.ast.Word;
 import com.pressassociation.fire.partialresponse.fields.ast.visitor.CopyVisitor;
 import com.pressassociation.fire.partialresponse.fields.parser.Parser;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 /**
  * Utilities relating to Matcher and associated classes.
  *
@@ -21,8 +23,9 @@ public class Matchers {
    * @return {@code true} if the matcher should match all paths.
    */
   public static boolean matchesAll(Matcher matcher) {
+    checkNotNull(matcher);
     return matcher instanceof AllMatcher ||
-           matcher.patternString().equals("*");
+           "*".equals(matcher.patternString());
   }
 
   /**
@@ -35,6 +38,8 @@ public class Matchers {
    * @return The new matcher
    */
   public static Matcher transform(Matcher matcher, final Function<? super String, String> nameTransformer) {
+    checkNotNull(matcher);
+    checkNotNull(nameTransformer);
     if (matchesAll(matcher)) {
       return matcher;
     }

@@ -5,7 +5,7 @@ import com.google.common.testing.NullPointerTester;
 import org.junit.Test;
 
 /**
- * Generated JavaDoc Comment.
+ * Tests for {@link Parser} for null checking.
  *
  * @author Matt Nathan
  */

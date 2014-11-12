@@ -9,7 +9,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 /**
- * base class to make testing transforming visitors easier.
+ * Base class to make testing transforming visitors easier.
  *
  * @param <V> The type of visitor
  * @param <T> The response type

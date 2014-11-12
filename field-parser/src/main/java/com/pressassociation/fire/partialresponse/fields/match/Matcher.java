@@ -10,27 +10,20 @@ import javax.annotation.Nullable;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
- * A Matcher that will match against some AstNode a CharSequence.
+ * Matches leaf nodes against a pattern. This class represents the core abstraction of partial responses. A Matcher is
+ * built around a pattern, once built you can query whether certain leaf nodes (or paths) are included in the pattern.
  *
  * @author Matt Nathan
  */
 public abstract class Matcher implements Predicate<Leaf> {
 
   /**
-   * Holder of lazy singletons.
-   */
-  @SuppressWarnings("UtilityClassWithoutPrivateConstructor")
-  private static final class Holder {
-    private static final Matcher ALL_INSTANCE = new AllMatcher();
-  }
-
-  /**
-   * Return a matcher that will match all paths.
+   * Return a matcher that will match all paths. Equivalent to {@code Matchers.of("*")}.
    *
    * @return The matcher.
    */
   public static Matcher all() {
-    return Holder.ALL_INSTANCE;
+    return AllMatcher.INSTANCE;
   }
 
   /**
@@ -48,22 +41,35 @@ public abstract class Matcher implements Predicate<Leaf> {
     return new AstMatcher(new Parser().parse(checkNotNull(fields)));
   }
 
+  /**
+   * Return whether this matcher pattern applies to the given leaf node.
+   */
   public abstract boolean matches(Leaf leaf);
 
+  /**
+   * @deprecated This method exists solely to satisfy the Predicate contract, use {@link #matches(Leaf)} instead.
+   */
   @Override
+  @Deprecated
   public boolean apply(@Nullable Leaf input) {
     return input != null && matches(input);
   }
 
   @Override
   public String toString() {
-    return "Matcher[" + patternString() + ']';
+    if (Matchers.matchesAll(this)) {
+      return "Matcher.all()";
+    }
+    return "Matcher.of(" + patternString() + ')';
   }
 
+  /**
+   * Get the pattern this Matcher represents. Used for toString().
+   */
   protected abstract String patternString();
 
   @Override
-  public boolean equals(Object obj) {
+  public boolean equals(@Nullable Object obj) {
     if (obj == this) {
       return true;
     }
