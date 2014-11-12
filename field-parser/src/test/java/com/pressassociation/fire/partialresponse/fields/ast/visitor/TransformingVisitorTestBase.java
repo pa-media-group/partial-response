@@ -9,8 +9,10 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 /**
- * base class to make testing transforming visitors easier
+ * base class to make testing transforming visitors easier.
  *
+ * @param <V> The type of visitor
+ * @param <T> The response type
  * @author Matt Nathan
  */
 public abstract class TransformingVisitorTestBase<V extends TransformingVisitor<T>, T> {

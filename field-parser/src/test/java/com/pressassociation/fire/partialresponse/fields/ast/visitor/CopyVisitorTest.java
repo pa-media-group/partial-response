@@ -12,7 +12,7 @@ import java.util.Collection;
 import static org.junit.Assert.assertNotSame;
 
 /**
- * Tests for the CopyVisitor
+ * Tests for the CopyVisitor.
  *
  * @author Matt Nathan
  */

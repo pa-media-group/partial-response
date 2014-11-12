@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- todo: extract this project up to top level -->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <!-- http://maven.apache.org/developers/conventions/code.html -->
+
+  <parent>
+    <groupId>org.sonatype.oss</groupId>
+    <artifactId>oss-parent</artifactId>
+    <version>9</version>
+  </parent>
+
+  <groupId>com.pressassociation.partial-response</groupId>
+  <artifactId>check-style</artifactId>
+  <version>1</version>
+
+  <name>check-style</name>
+  <description>Provides checkstyle information for the project</description>
+  <inceptionYear>2012</inceptionYear>
+  <url>https://github.com/PressAssociation/partial-response</url>
+
+  <licenses>
+    <license>
+      <name>The MIT License</name>
+      <url>http://www.opensource.org/licenses/mit-license.php</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <scm>
+    <connection>scm:git:git@github.com:PressAssociation/partial-response.git</connection>
+    <developerConnection>scm:git:git@github.com:PressAssociation/partial-response.git</developerConnection>
+    <url>https://github.com/PressAssociation/partial-response</url>
+  </scm>
+
+  <developers>
+    <developer>
+      <id>mattnathan</id>
+      <name>Matt Nathan</name>
+      <email>matt.nathan+partial-response@gmail.com</email>
+      <organization>Press Association</organization>
+      <organizationUrl>http://pressassociation.com</organizationUrl>
+      <roles>
+        <role>owner</role>
+        <role>developer</role>
+      </roles>
+      <timezone>0</timezone>
+    </developer>
+  </developers>
+
+  <issueManagement>
+    <system>GitHub</system>
+    <url>https://github.com/PressAssociation/partial-response/issues</url>
+  </issueManagement>
+
+  <ciManagement>
+    <system>Bamboo</system>
+    <url>http://bamboo.howden.press.net/</url>
+  </ciManagement>
+</project>

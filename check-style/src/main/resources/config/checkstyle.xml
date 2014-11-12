@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE module PUBLIC
-        "-//Puppy Crawl//DTD Check Configuration 1.3//EN"
-        "http://www.puppycrawl.com/dtds/configuration_1_3.dtd">
+    "-//Puppy Crawl//DTD Check Configuration 1.3//EN"
+    "http://www.puppycrawl.com/dtds/configuration_1_3.dtd">
 
 <!-- This is a checkstyle configuration file. For descriptions of
 what the following rules do, please see the checkstyle configuration
@@ -178,6 +178,7 @@ page at http://checkstyle.sourceforge.net/config.html -->
       <property name="severity" value="warning" />
     </module>
 
+
     <!--
 
     LENGTH and CODING CHECKS
@@ -248,6 +249,7 @@ page at http://checkstyle.sourceforge.net/config.html -->
       <property name="severity" value="error" />
     </module>
 
+
     <!--
 
     MODIFIERS CHECKS
@@ -261,6 +263,7 @@ page at http://checkstyle.sourceforge.net/config.html -->
            synchronized, native, strictfp
         -->
     </module>
+
 
     <!--
 
@@ -318,4 +321,3 @@ page at http://checkstyle.sourceforge.net/config.html -->
 
   </module>
 </module>
-

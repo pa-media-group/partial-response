@@ -57,13 +57,11 @@
   </ciManagement>
 
   <modules>
+    <module>check-style</module>
     <module>field-parser</module>
   </modules>
 
   <properties>
-    <!-- HACK: Need to override this property in all sub-modules to resolve to the same path -->
-    <codestyle.basedir>${project.basedir}/codestyle</codestyle.basedir>
-
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
     <guava.version>18.0</guava.version>
@@ -130,6 +128,11 @@
             </dependency>
           </dependencies>
         </plugin>
+
+        <plugin>
+          <artifactId>maven-checkstyle-plugin</artifactId>
+          <version>2.13</version>
+        </plugin>
       </plugins>
     </pluginManagement>
 
@@ -148,14 +151,13 @@
 
     <plugins>
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-checkstyle-plugin</artifactId>
-        <version>2.10</version>
         <configuration>
-          <configLocation>${codestyle.basedir}/checkstyle.xml</configLocation>
+          <configLocation>config/checkstyle.xml</configLocation>
+          <suppressionsLocation>config/checkstyle-suppressions.xml</suppressionsLocation>
           <consoleOutput>true</consoleOutput>
-          <suppressionsLocation>${codestyle.basedir}/checkstyle-suppressions.xml</suppressionsLocation>
           <enableRulesSummary>false</enableRulesSummary>
+          <includeTestSourceDirectory>true</includeTestSourceDirectory>
         </configuration>
         <executions>
           <execution>
@@ -164,6 +166,13 @@
             </goals>
           </execution>
         </executions>
+        <dependencies>
+          <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>check-style</artifactId>
+            <version>1</version>
+          </dependency>
+        </dependencies>
       </plugin>
     </plugins>
   </build>
