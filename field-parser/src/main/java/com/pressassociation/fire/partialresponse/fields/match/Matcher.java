@@ -1,8 +1,12 @@
 package com.pressassociation.fire.partialresponse.fields.match;
 
+import com.google.common.base.Function;
 import com.google.common.base.Objects;
 import com.google.common.base.Predicate;
 
+import com.pressassociation.fire.partialresponse.fields.ast.AstNode;
+import com.pressassociation.fire.partialresponse.fields.ast.Word;
+import com.pressassociation.fire.partialresponse.fields.ast.visitor.CopyVisitor;
 import com.pressassociation.fire.partialresponse.fields.parser.Parser;
 
 import javax.annotation.Nullable;
@@ -41,10 +45,57 @@ public abstract class Matcher implements Predicate<Leaf> {
     return new AstMatcher(new Parser().parse(checkNotNull(fields)));
   }
 
+  // package-private to stop any custom implementations.
+  Matcher() {
+  }
+
+  /**
+   * Return whether this matcher should match all paths. This can be used to optimise certain code paths that would do
+   * extra work to support matchers when it would not be needed.
+   *
+   * @return {@code true} if the matcher should match all paths.
+   */
+  public boolean matchesAll() {
+    return "*".equals(patternString());
+  }
+
   /**
    * Return whether this matcher pattern applies to the given leaf node.
    */
   public abstract boolean matches(Leaf leaf);
+
+  /**
+   * Return whether this matcher pattern applies to the given path. The path will be split according to
+   * {@link Leaf#fromPath(CharSequence)}.
+   */
+  public boolean matches(CharSequence path) {
+    return matches(Leaf.fromPath(path));
+  }
+
+  /**
+   * Transform the words in the given matcher according to the nameTransformer given. This can be used to fulfil
+   * certain
+   * use-cases, for example to expand namespaces in patterns like {@code foaf:name/foaf:familyName} to their
+   * fully-qualified forms.
+   *
+   * @param nameTransformer The function used to transform the matchers words
+   * @return The new matcher
+   */
+  public Matcher transform(final Function<? super String, String> nameTransformer) {
+    checkNotNull(nameTransformer);
+    if (matchesAll()) {
+      return this;
+    }
+    AstNode ast = getAstNode();
+
+    AstNode transformed = new CopyVisitor() {
+      @Override
+      protected Word createWordCopy(String stringValue) {
+        return super.createWordCopy(nameTransformer.apply(stringValue));
+      }
+    }.applyTo(ast);
+    return new AstMatcher(transformed);
+  }
 
   /**
    * @deprecated This method exists solely to satisfy the Predicate contract, use {@link #matches(Leaf)} instead.
@@ -57,7 +108,7 @@ public abstract class Matcher implements Predicate<Leaf> {
 
   @Override
   public String toString() {
-    if (Matchers.matchesAll(this)) {
+    if (matchesAll()) {
       return "Matcher.all()";
     }
     return "Matcher.of(" + patternString() + ')';
@@ -86,5 +137,12 @@ public abstract class Matcher implements Predicate<Leaf> {
   @Override
   public int hashCode() {
     return Objects.hashCode(Matcher.class, patternString());
+  }
+
+  /**
+   * Get the ast node this matcher represents.
+   */
+  protected AstNode getAstNode() {
+    return new Parser().parse(patternString());
   }
 }
