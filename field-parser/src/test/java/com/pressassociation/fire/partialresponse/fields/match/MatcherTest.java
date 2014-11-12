@@ -6,13 +6,13 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 /**
- * Generated JavaDoc Comment.
+ * Test for {@link Matcher}.
  *
  * @author Matt Nathan
  */
 public class MatcherTest {
   /**
-   * This test checks that the example in the readme actually does what we want it to
+   * This test checks that the example in the readme actually does what we want it to.
    */
   @Test
   public void testReadmeExamples() {

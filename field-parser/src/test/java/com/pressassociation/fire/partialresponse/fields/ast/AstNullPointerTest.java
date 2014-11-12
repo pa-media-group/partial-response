@@ -11,7 +11,7 @@ import org.junit.runners.Parameterized;
 import java.util.Collection;
 
 /**
- * Checks all the constructors, methods and static methods of every concrete ast node implementation
+ * Checks all the constructors, methods and static methods of every concrete ast node implementation.
  *
  * @author Matt Nathan
  */

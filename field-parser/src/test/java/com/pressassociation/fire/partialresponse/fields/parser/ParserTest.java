@@ -12,7 +12,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
 /**
- * Test that the parsed pattern becomes the same as what we expect
+ * Test that the parsed pattern becomes the same as what we expect.
  *
  * @author Matt Nathan
  */
