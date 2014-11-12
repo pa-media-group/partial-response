@@ -65,6 +65,8 @@
     <codestyle.basedir>${project.basedir}/codestyle</codestyle.basedir>
 
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+    <guava.version>18.0</guava.version>
   </properties>
 
   <dependencyManagement>
@@ -73,7 +75,7 @@
       <dependency>
         <groupId>com.google.guava</groupId>
         <artifactId>guava</artifactId>
-        <version>11.0.2</version>
+        <version>${guava.version}</version>
       </dependency>
 
       <!-- JSR 305 - common annotations for the java platform -->
@@ -87,12 +89,20 @@
       <dependency>
         <groupId>org.mockito</groupId>
         <artifactId>mockito-all</artifactId>
-        <version>1.9.0</version>
+        <version>1.10.8</version>
+        <scope>test</scope>
       </dependency>
       <dependency>
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
-        <version>4.10</version>
+        <version>4.11</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>com.google.guava</groupId>
+        <artifactId>guava-testlib</artifactId>
+        <version>${guava.version}</version>
+        <scope>test</scope>
       </dependency>
     </dependencies>
   </dependencyManagement>
