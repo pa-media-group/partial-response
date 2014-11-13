@@ -5,7 +5,7 @@ import com.pressassociation.fire.partialresponse.fields.ast.visitor.AstVisitor;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
- * Generated JavaDoc Comment.
+ * represents a collection of fields, that is the items in {@code (field1, field2)} type structures.
  *
  * @author Matt Nathan
  */

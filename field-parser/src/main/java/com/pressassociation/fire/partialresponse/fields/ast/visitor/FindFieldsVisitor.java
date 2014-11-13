@@ -19,7 +19,7 @@ import static com.google.common.base.Preconditions.checkState;
  * Visitor that collects all top level fields of the ast.
  * <p/>
  * For example:
- * Given item,href,people(id) this will return [people(id), href, item] as a collection of field.
+ * Given {@code item, href, people(id)} this will return {@code [people(id), href, item]} as a collection of field.
  * <p/>
  * Results are returned in what you might consider reverse order
  *

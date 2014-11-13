@@ -1,7 +1,7 @@
 package com.pressassociation.fire.partialresponse.fields.ast;
 
 /**
- * Generated JavaDoc Comment.
+ * Represents an explicit element in a partial response path.
  *
  * @author Matt Nathan
  */

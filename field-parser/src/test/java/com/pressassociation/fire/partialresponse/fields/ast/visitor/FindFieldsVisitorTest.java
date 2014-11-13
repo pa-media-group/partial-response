@@ -10,7 +10,7 @@ import org.junit.runners.Parameterized;
 import java.util.Collection;
 
 /**
- * Generated JavaDoc Comment.
+ * Tests for {@link FindFieldsVisitor}.
  *
  * @author Matt Nathan
  */

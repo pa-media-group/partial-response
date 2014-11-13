@@ -8,11 +8,14 @@ import com.pressassociation.fire.partialresponse.fields.ast.visitor.ToStringVisi
 import javax.annotation.Nullable;
 
 /**
- * Generated JavaDoc Comment.
+ * Represents a node in a partial response AST. All other nodes types extend from this type.
  *
  * @author Matt Nathan
  */
 public abstract class AstNode {
+  /**
+   * Apply the given visitor over the tree represented by this node.
+   */
   public abstract void apply(AstVisitor visitor);
 
   @Override

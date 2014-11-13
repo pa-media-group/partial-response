@@ -5,7 +5,7 @@ import com.google.common.testing.EqualsTester;
 import org.junit.Test;
 
 /**
- * Generated JavaDoc Comment.
+ * Tests to check the equality of different AST configurations.
  *
  * @author Matt Nathan
  */

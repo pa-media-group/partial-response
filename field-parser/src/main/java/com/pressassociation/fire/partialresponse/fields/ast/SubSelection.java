@@ -5,7 +5,7 @@ import com.pressassociation.fire.partialresponse.fields.ast.visitor.AstVisitor;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
- * Generated JavaDoc Comment.
+ * Represents a sub selection for a named path entry.
  *
  * @author Matt Nathan
  */

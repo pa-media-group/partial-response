@@ -3,11 +3,14 @@ package com.pressassociation.fire.partialresponse.fields.parser;
 import com.google.common.base.CharMatcher;
 
 import com.pressassociation.fire.partialresponse.fields.ast.*;
+import com.pressassociation.fire.partialresponse.fields.match.Matcher;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
- * Parser for the getNext value.
+ * <p>Parser of partial response patterns. This parser outputs an AST representing the partial response structure.
+ *
+ * <p>It is very unlikely that you want to be working with the Parser and Ast directly, try {@link Matcher} instead.
  *
  * @author Matt Nathan
  */
@@ -15,6 +18,9 @@ public class Parser {
   // matcher for non-whitespace and non special chars ,/()*
   private static final CharMatcher WORD_CHAR_MATCHER = CharMatcher.WHITESPACE.negate().and(CharMatcher.noneOf(",/()*"));
 
+  /**
+   * Parse the given partial response input, return the Ast for the pattern.
+   */
   public AstNode parse(CharSequence input) {
     return parse(new Input(checkNotNull(input)));
   }
@@ -64,6 +70,9 @@ public class Parser {
            new Word(input.consume(WORD_CHAR_MATCHER));
   }
 
+  /**
+   * Helper class for tracking the parsing position and helping with navigation through the chars.
+   */
   private static final class Input {
     private final CharSequence chars;
     private int offset = 0;

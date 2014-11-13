@@ -10,7 +10,7 @@ import org.junit.runners.Parameterized;
 import java.util.Collection;
 
 /**
- * Test the ExpandingVisitor.
+ * Tests for {@link ExpandingVisitor}.
  *
  * @author Matt Nathan
  */

@@ -6,7 +6,7 @@ import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
- * Generated JavaDoc Comment.
+ * A single resolved word in a path.
  *
  * @author Matt Nathan
  */

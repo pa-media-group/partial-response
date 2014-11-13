@@ -1,10 +1,10 @@
 package com.pressassociation.fire.partialresponse.fields.ast;
 
 /**
- * Generated JavaDoc Comment.
+ * Represents a singular element in a partial response structure.
  *
  * @author Matt Nathan
+ * @see Fields
  */
-@SuppressWarnings("EmptyClass")
 public abstract class Field extends AstNode {
 }

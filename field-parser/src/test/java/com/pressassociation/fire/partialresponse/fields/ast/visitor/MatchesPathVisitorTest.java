@@ -9,7 +9,7 @@ import org.junit.runners.Parameterized;
 import java.util.Collection;
 
 /**
- * Test the MatchesPathVisitor to make sure it matches where it should and doesn't match where it shouldn't.
+ * Tests for {@link MatchesPathVisitor} to make sure it matches where it should and doesn't match where it shouldn't.
  *
  * @author Matt Nathan
  */

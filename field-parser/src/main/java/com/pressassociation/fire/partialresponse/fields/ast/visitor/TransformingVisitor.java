@@ -9,11 +9,17 @@ import com.pressassociation.fire.partialresponse.fields.ast.AstNode;
  * @author Matt Nathan
  */
 public abstract class TransformingVisitor<T> extends AstVisitor {
+  /**
+   * Apply this visitor to the given AST returning the result.
+   */
   public T applyTo(AstNode node) {
     node.apply(this);
     return getResult();
   }
 
+  /**
+   * Return the result of visiting the AST.
+   */
   public abstract T getResult();
 
   @Override

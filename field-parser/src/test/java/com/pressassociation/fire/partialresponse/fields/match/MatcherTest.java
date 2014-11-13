@@ -6,7 +6,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 /**
- * Test for {@link Matcher}.
+ * Tests for {@link Matcher}.
  *
  * @author Matt Nathan
  */

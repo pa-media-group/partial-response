@@ -10,7 +10,7 @@ import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
 
 /**
- * Generated JavaDoc Comment.
+ * Tests for {@link AstVisitor}.
  *
  * @author Matt Nathan
  */

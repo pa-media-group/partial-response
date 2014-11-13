@@ -3,7 +3,8 @@ package com.pressassociation.fire.partialresponse.fields.ast.visitor;
 import com.pressassociation.fire.partialresponse.fields.ast.*;
 
 /**
- * Generated JavaDoc Comment.
+ * A visitor over an AST tree. While this class is abstract it doesn't require any methods to be implemented. The tree
+ * is traversed automatically by default, sub-classes can override this behaviour if they need to.
  *
  * @author Matt Nathan
  */
@@ -15,6 +16,9 @@ public abstract class AstVisitor {
     }
   }
 
+  /**
+   * Called before the right hand side of a Fields node is visited. Return false to stop processing of that node.
+   */
   protected boolean beforeFieldsNext(Fields fields) {
     return true;
   }
@@ -26,6 +30,9 @@ public abstract class AstVisitor {
     }
   }
 
+  /**
+   * Called before the suffix part of a Path node is visited. Return false to stop processing.
+   */
   protected boolean beforePathField(Path path) {
     return true;
   }
@@ -38,10 +45,16 @@ public abstract class AstVisitor {
     }
   }
 
+  /**
+   * Called before the fields part of a SubSelection is visited. Return false to stop processing.
+   */
   protected boolean beforeSubSelectionFields(SubSelection subSelection) {
     return true;
   }
 
+  /**
+   * Called after the fields part of a SubSelection is visited.
+   */
   protected void afterSubSelectionFields(SubSelection subSelection) {
     // empty
   }

@@ -3,7 +3,7 @@ package com.pressassociation.fire.partialresponse.fields.ast;
 import com.pressassociation.fire.partialresponse.fields.ast.visitor.AstVisitor;
 
 /**
- * Generated JavaDoc Comment.
+ * Represents a wildcard name.
  *
  * @author Matt Nathan
  */

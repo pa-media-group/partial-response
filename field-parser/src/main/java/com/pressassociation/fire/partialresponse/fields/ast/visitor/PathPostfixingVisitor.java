@@ -9,8 +9,9 @@ import com.pressassociation.fire.partialresponse.fields.parser.Parser;
  * Postfix some node to the visited nodes.
  * <p/>
  * For example:<br/>
- * items/id,items/name with a postfix value of type will become items/id/type,items/name/type<br/>
- * items(id,name) with a postfix of type will become items(id,name)/type
+ * {@code items/id,items/name} with a postfix value of {@code type} will become
+ * {@code items/id/type,items/name/type}<br/>
+ * {@code items(id, name)} with a postfix of {@code type} will become {@code items(id, name)/type}
  *
  * @author Matt Nathan
  */
