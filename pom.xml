@@ -59,6 +59,7 @@
   <modules>
     <module>check-style</module>
     <module>field-parser</module>
+    <module>filter-json-jackson</module>
   </modules>
 
   <properties>
