@@ -24,6 +24,11 @@ class AllMatcher extends Matcher {
   }
 
   @Override
+  public boolean matchesParent(Leaf node) {
+    return true;
+  }
+
+  @Override
   protected String patternString() {
     return "*";
   }

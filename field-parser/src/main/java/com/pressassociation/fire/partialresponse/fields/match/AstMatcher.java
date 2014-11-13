@@ -1,6 +1,7 @@
 package com.pressassociation.fire.partialresponse.fields.match;
 
 import com.pressassociation.fire.partialresponse.fields.ast.AstNode;
+import com.pressassociation.fire.partialresponse.fields.ast.visitor.MatchesParentVisitor;
 import com.pressassociation.fire.partialresponse.fields.ast.visitor.MatchesPathVisitor;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -20,6 +21,11 @@ class AstMatcher extends Matcher {
   @Override
   public boolean matches(Leaf input) {
     return new MatchesPathVisitor(input.getPath()).applyTo(fields);
+  }
+
+  @Override
+  public boolean matchesParent(Leaf node) {
+    return new MatchesParentVisitor(node.getPath()).applyTo(fields);
   }
 
   @Override
