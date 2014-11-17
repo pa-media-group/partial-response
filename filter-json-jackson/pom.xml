@@ -42,6 +42,10 @@
       <artifactId>mockito-all</artifactId>
     </dependency>
     <dependency>
+      <groupId>pl.pragmatists</groupId>
+      <artifactId>JUnitParams</artifactId>
+    </dependency>
+    <dependency>
       <groupId>com.google.guava</groupId>
       <artifactId>guava-testlib</artifactId>
     </dependency>

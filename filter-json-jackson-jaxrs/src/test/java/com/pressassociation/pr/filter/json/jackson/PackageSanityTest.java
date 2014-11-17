@@ -18,6 +18,7 @@ public class PackageSanityTest extends AbstractPackageSanityTests {
   @Override
   public void setUp() throws Exception {
     super.setUp();
+    setDefault(JacksonRequestParamFilter.class, mock(JacksonRequestParamFilter.class));
     setDefault(Matcher.class, Matcher.all());
     setDefault(JsonGenerator.class, mock(JsonGenerator.class));
     setDefault(SerializerProvider.class, mock(SerializerProvider.class));

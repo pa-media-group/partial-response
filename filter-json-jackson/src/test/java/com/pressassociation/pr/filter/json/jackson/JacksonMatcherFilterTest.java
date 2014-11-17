@@ -19,6 +19,7 @@ import javax.annotation.Nullable;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertSame;
 
 /**
  * Tests for {@link JacksonMatcherFilter}.
@@ -247,6 +248,12 @@ public class JacksonMatcherFilterTest {
         "    \"name\" : \"Black Beauty\"\n" +
         "  } ]\n" +
         '}');
+  }
+
+  @Test
+  public void testGetMatcher() {
+    Matcher matcher = Matcher.of("foo/bar");
+    assertSame(matcher, new JacksonMatcherFilter(matcher).getMatcher());
   }
 
   private void assertMatchesJson(CharSequence fields, String json) throws JsonProcessingException {
