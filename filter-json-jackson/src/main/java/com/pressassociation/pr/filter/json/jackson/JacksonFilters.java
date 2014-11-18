@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.introspect.Annotated;
 import com.fasterxml.jackson.databind.introspect.JacksonAnnotationIntrospector;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
-import com.pressassociation.fire.partialresponse.fields.match.Matcher;
+import com.pressassociation.pr.match.Matcher;
 
 /**
  * Set of utilities for filtering Jackson output based on partial response.
