@@ -26,4 +26,9 @@ class AstMatcher extends Matcher {
   protected String patternString() {
     return fields.toString();
   }
+
+  @Override
+  protected AstNode getAstNode() {
+    return fields;
+  }
 }

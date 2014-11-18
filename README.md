@@ -19,17 +19,17 @@ Basic use in your application will generally be of the form:
 Matcher matcher = Matcher.of("name,address,spouse(name,address),children/*");
 
 // matches all of these Leafs
-assertTrue(matcher.matches(Leaf.fromPath("/name")));
-assertTrue(matcher.matches(Leaf.fromPath("/address")));
-assertTrue(matcher.matches(Leaf.fromPath("/address/houseNumber")));
-assertTrue(matcher.matches(Leaf.fromPath("/spouse/name")));
-assertTrue(matcher.matches(Leaf.fromPath("/spouse/address")));
-assertTrue(matcher.matches(Leaf.fromPath("/children")));
-assertTrue(matcher.matches(Leaf.fromPath("/children/any/path")));
+assertTrue(matcher.matches("/name"));
+assertTrue(matcher.matches("/address"));
+assertTrue(matcher.matches("/address/houseNumber"));
+assertTrue(matcher.matches("/spouse/name"));
+assertTrue(matcher.matches("/spouse/address"));
+assertTrue(matcher.matches("/children"));
+assertTrue(matcher.matches("/children/any/path"));
 
 // doesn't match any of these
-assertFalse(matcher.matches(Leaf.fromPath("/unknown")));
-assertFalse(matcher.matches(Leaf.fromPath("/spouse/children")));
+assertFalse(matcher.matches("/unknown"));
+assertFalse(matcher.matches("/spouse/children"));
 // Note: spouse as a leaf is not included, only certain sub properties are
-assertFalse(matcher.matches(Leaf.fromPath("/spouse")));
+assertFalse(matcher.matches("/spouse"));
 ```
