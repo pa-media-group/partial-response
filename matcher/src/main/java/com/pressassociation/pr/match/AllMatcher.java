@@ -72,4 +72,9 @@ class AllMatcher extends Matcher {
   protected AstNode getAstNode() {
     return Wildcard.getSharedInstance();
   }
+
+  public Matcher narrowScope(Leaf path) {
+    checkNotNull(path);
+    return this;
+  }
 }

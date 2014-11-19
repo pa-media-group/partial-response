@@ -24,9 +24,13 @@
 
 package com.pressassociation.pr.match;
 
+import com.google.common.base.Optional;
+
 import com.pressassociation.pr.ast.AstNode;
+import com.pressassociation.pr.ast.Wildcard;
 import com.pressassociation.pr.ast.visitor.MatchesParentVisitor;
 import com.pressassociation.pr.ast.visitor.MatchesPathVisitor;
+import com.pressassociation.pr.ast.visitor.NarrowScopeVisitor;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -60,5 +64,20 @@ class AstMatcher extends Matcher {
   @Override
   protected AstNode getAstNode() {
     return fields;
+  }
+
+  @Override
+  public Matcher narrowScope(Leaf path) {
+    Optional<AstNode> astNode = new NarrowScopeVisitor(path.getPath()).applyTo(fields);
+    if (astNode.isPresent()) {
+      if (Wildcard.getSharedInstance().equals(astNode.get())) {
+        return AllMatcher.INSTANCE;
+      } else {
+        return new AstMatcher(astNode.get());
+      }
+    } else {
+      // missing result means it doesn't match anything
+      return NoneMatcher.INSTANCE;
+    }
   }
 }

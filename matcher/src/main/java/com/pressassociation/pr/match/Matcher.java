@@ -131,6 +131,40 @@ public abstract class Matcher implements Predicate<Leaf> {
   }
 
   /**
+   * <p>Return a new Matcher that matches against the given sub path. This has the effect of reducing the scope of this
+   * Matcher so that it is focused on fields rooted at the given path.
+   *
+   * <p>For example, given a matcher for the pattern {@code "count,items(age,name/displayName),*&#47;id"} then the
+   * following equivalent Matchers will be created depending on the path supplied:
+   *
+   * <ul>
+   *   <li>{@code "count" -> "*"}</li>
+   *   <li>{@code "items" -> "age,name/displayName,id,*&#47;id"}</li>
+   *   <li>{@code "items/name" -> "displayName,id,*&#47;id"}</li>
+   *   <li>{@code "random/path" -> Matcher.none()}</li>
+   * </ul>
+   */
+  public Matcher narrowScope(CharSequence path) {
+    return narrowScope(Leaf.fromPath(path));
+  }
+
+  /**
+   * <p>Return a new Matcher that matches against the given sub path. This has the effect of reducing the scope of this
+   * Matcher so that it is focused on fields rooted at the given path.
+   *
+   * <p>For example, given a matcher for the pattern {@code "count,items(age,name/displayName),*&#47;id"} then the
+   * following equivalent Matchers will be created depending on the path supplied:
+   *
+   * <ul>
+   *   <li>{@code "count" -> "*"}</li>
+   *   <li>{@code "items" -> "age,name/displayName,id,*&#47;id"}</li>
+   *   <li>{@code "items/name" -> "displayName,id,*&#47;id"}</li>
+   *   <li>{@code "random/path" -> Matcher.none()}</li>
+   * </ul>
+   */
+  public abstract Matcher narrowScope(Leaf path);
+
+  /**
    * Transform the words in the given matcher according to the nameTransformer given. This can be used to fulfil
    * certain
    * use-cases, for example to expand namespaces in patterns like {@code foaf:name/foaf:familyName} to their
