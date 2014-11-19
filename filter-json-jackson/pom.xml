@@ -23,7 +23,7 @@
   <dependencies>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>field-parser</artifactId>
+      <artifactId>matcher</artifactId>
       <version>${project.version}</version>
     </dependency>
 

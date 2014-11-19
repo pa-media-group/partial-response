@@ -7,8 +7,8 @@
     <version>1.0-SNAPSHOT</version>
   </parent>
 
-  <artifactId>field-parser</artifactId>
-  <name>Partial Response: Field parser</name>
+  <artifactId>matcher</artifactId>
+  <name>Partial Response: Matcher</name>
   <description>Library for parsing a partial response string and basic matching of the result</description>
 
   <dependencies>
