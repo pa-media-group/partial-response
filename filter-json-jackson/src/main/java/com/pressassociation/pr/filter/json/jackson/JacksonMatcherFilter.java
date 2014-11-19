@@ -42,11 +42,14 @@ public class JacksonMatcherFilter extends SimpleBeanPropertyFilter {
    */
 
   private final Matcher matcher;
-  private final Deque<String> propertyPath = Queues.newArrayDeque();
-
-  // contains the current parent node for use by recursive calls.
-  private Node currentNode = new Node();
-  private boolean serializationMode = false;
+  // this state only exists between the start and end of a full serialisation run, it will be empty before and after
+  // that run.
+  private final ThreadLocal<State> state = new ThreadLocal<State>() {
+    @Override
+    protected State initialValue() {
+      return new State();
+    }
+  };
 
   public JacksonMatcherFilter(Matcher matcher) {
     this.matcher = checkNotNull(matcher);
@@ -61,16 +64,17 @@ public class JacksonMatcherFilter extends SimpleBeanPropertyFilter {
     checkNotNull(writer);
 
     // remember the node that triggered this method call
-    Node parentNode = currentNode;
-    propertyPath.addLast(writer.getName());
+    State state = this.state.get();
+    Node parentNode = state.currentNode;
+    state.propertyPath.addLast(writer.getName());
     try {
-      if (!serializationMode) {
+      if (!state.serializationMode) {
         processFirstPass(parentNode, pojo, provider, writer, jGen);
       } else {
         // do the actual writing of the field
         // if the first child in the current node matches this field then we want to write it and it's children
-        if (currentNode.matchesFirstChild(writer)) {
-          currentNode = currentNode.popChild();
+        if (state.currentNode.matchesFirstChild(writer)) {
+          state.currentNode = state.currentNode.popChild();
           writer.serializeAsField(pojo, jGen, provider);
         } else {
           // write missing fields.
@@ -81,7 +85,7 @@ public class JacksonMatcherFilter extends SimpleBeanPropertyFilter {
       if (parentNode.isRoot()) {
         try {
           // about to enter the _real_ serialization pass, mark it as such so the above logic isn't repeated
-          serializationMode = true;
+          state.serializationMode = true;
           if (parentNode.isEmpty()) {
             // write out that we will be omitting data
             writer.serializeAsOmittedField(pojo, jGen, provider);
@@ -89,23 +93,25 @@ public class JacksonMatcherFilter extends SimpleBeanPropertyFilter {
             // in this case we've found a root property that needs to be output
             // as we go through the child nodes again we check against the Node tree instead of the Matcher, we've
             // already done those checks on the first pass
-            currentNode = parentNode.popChild();
-            checkState(currentNode.matchesName(writer), "Unexpected root node: %s", currentNode);
+            state.currentNode = parentNode.popChild();
+            checkState(state.currentNode.matchesName(writer), "Unexpected root node: %s", state.currentNode);
             writer.serializeAsField(pojo, jGen, provider);
           }
         } finally {
-          serializationMode = false;
+          state.serializationMode = false;
+          this.state.remove();
         }
       }
     } finally {
-      propertyPath.removeLast();
-      currentNode = parentNode;
+      state.propertyPath.removeLast();
+      state.currentNode = parentNode;
     }
   }
 
   private void processFirstPass(Node parentNode, Object pojo, SerializerProvider provider,
                                 PropertyWriter writer, JsonGenerator generator) throws Exception {
-    Leaf leaf = Leaf.copyOf(propertyPath);
+    State state = this.state.get();
+    Leaf leaf = Leaf.copyOf(state.propertyPath);
 
     // if this property _can_ contribute towards the path leading to a matching leaf then we have to check
     boolean matches = matcher.matches(leaf);
@@ -117,20 +123,20 @@ public class JacksonMatcherFilter extends SimpleBeanPropertyFilter {
       }
 
       // prepare a node for this property so child branches can add to it as needed
-      currentNode = new Node(parentNode, writer.getName());
+      state.currentNode = new Node(parentNode, writer.getName());
       writer.serializeAsField(pojo, generator, provider);
 
       // check the results of processing the children
-      if (currentNode.isEmpty()) {
+      if (state.currentNode.isEmpty()) {
         // either we don't have any children or none of them are matching leaves.
         // in any case
         if (matches) {
           // it turns out we match anyway so add this node
-          parentNode.addChild(currentNode);
+          parentNode.addChild(state.currentNode);
         }
       } else {
         // child leafs match so we need to include this node as a parent of them
-        parentNode.addChild(currentNode);
+        parentNode.addChild(state.currentNode);
       }
     }
   }
@@ -199,6 +205,18 @@ public class JacksonMatcherFilter extends SimpleBeanPropertyFilter {
     @Override
     public String toString() {
       return name + ' ' + (children == null ? "[]" : children);
+    }
+  }
+
+  private class State {
+    final Deque<String> propertyPath = Queues.newArrayDeque();
+
+    // contains the current parent node for use by recursive calls.
+    Node currentNode = new Node();
+    boolean serializationMode = false;
+
+    public void addPropertyPath() {
+
     }
   }
 }
