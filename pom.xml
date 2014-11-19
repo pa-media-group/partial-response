@@ -12,7 +12,7 @@
   <version>1.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
-  <name>partial-response parent</name>
+  <name>Partial Response: Parent</name>
   <description>Parent pom for the partial-response project</description>
   <inceptionYear>2012</inceptionYear>
   <url>https://github.com/PressAssociation/partial-response</url>
