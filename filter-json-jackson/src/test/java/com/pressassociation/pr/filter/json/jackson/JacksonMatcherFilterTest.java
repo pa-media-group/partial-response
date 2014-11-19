@@ -18,6 +18,7 @@ import javax.annotation.Nullable;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 /**
  * Tests for {@link JacksonMatcherFilter}.
@@ -251,9 +252,11 @@ public class JacksonMatcherFilterTest {
   private void assertMatchesJson(CharSequence fields, String json) throws JsonProcessingException {
     ObjectMapper mapper = new ObjectMapper()
         .enable(SerializationFeature.INDENT_OUTPUT);
+    JacksonMatcherFilter filter = new JacksonMatcherFilter(Matcher.of(fields));
     mapper.setFilters(new SimpleFilterProvider()
-                          .addFilter("test", new JacksonMatcherFilter(Matcher.of(fields))));
+                          .addFilter("test", filter));
     assertEquals(json, mapper.writeValueAsString(new PetStore()));
+    assertNull("Runtime state was not cleared", filter.state.get());
   }
 
   /**

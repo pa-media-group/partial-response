@@ -1,5 +1,6 @@
 package com.pressassociation.pr.filter.json.jackson;
 
+import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Queues;
 import com.google.common.io.CharStreams;
@@ -44,12 +45,8 @@ public class JacksonMatcherFilter extends SimpleBeanPropertyFilter {
   private final Matcher matcher;
   // this state only exists between the start and end of a full serialisation run, it will be empty before and after
   // that run.
-  private final ThreadLocal<State> state = new ThreadLocal<State>() {
-    @Override
-    protected State initialValue() {
-      return new State();
-    }
-  };
+  @VisibleForTesting
+  final ThreadLocal<State> state = new ThreadLocal<State>();
 
   public JacksonMatcherFilter(Matcher matcher) {
     this.matcher = checkNotNull(matcher);
@@ -65,6 +62,10 @@ public class JacksonMatcherFilter extends SimpleBeanPropertyFilter {
 
     // remember the node that triggered this method call
     State state = this.state.get();
+    if (state == null) {
+      state = new State();
+      this.state.set(state);
+    }
     Node parentNode = state.currentNode;
     state.propertyPath.addLast(writer.getName());
     try {
