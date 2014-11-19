@@ -37,9 +37,10 @@ public class MatchesParentVisitor extends TransformingVisitor<Boolean> {
   protected boolean beforeFieldsNext(Fields fields) {
     if (matched || fieldStillMatches()) {
       // no point continuing if we've matched one of the fields already
-      // if the field no longer matches then we try the other branch
       return false;
     } else {
+      // try the other branch if we aren't certain of a match
+      // or the field no longer matches
       resetPathIndex();
       resetFieldMatchStatus();
       return true;
