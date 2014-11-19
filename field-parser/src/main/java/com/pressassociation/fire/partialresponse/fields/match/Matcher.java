@@ -60,16 +60,40 @@ public abstract class Matcher implements Predicate<Leaf> {
   }
 
   /**
-   * Return whether this matcher pattern applies to the given leaf node.
+   * Return whether this matcher pattern exactly matches the given leaf. This will not return true if the leaf
+   * represents a node that not explicitly matched. For example a pattern of {@code my/property} will not match the
+   * leaf value {@code my}.
+   *
+   * @see #matchesParent(Leaf)
    */
   public abstract boolean matches(Leaf leaf);
 
   /**
    * Return whether this matcher pattern applies to the given path. The path will be split according to
    * {@link Leaf#fromPath(CharSequence)}.
+   *
+   * @see #matches(Leaf)
    */
   public boolean matches(CharSequence path) {
     return matches(Leaf.fromPath(path));
+  }
+
+  /**
+   * Returns whether any of the leafs that this instance {@link #matches(Leaf) matches} start with the given node. For
+   * example, given the pattern {@code my/property} this method will return true for both {@code my} and
+   * {@code my/property}. This method is also aware of wildcards in the pattern such that a pattern of
+   * {@code my/*&#47;property} will match any node beginning with {@code my}
+   */
+  public abstract boolean matchesParent(Leaf node);
+
+  /**
+   * Returns whether any of the leafs that this instance {@link #matches(Leaf) matches} start with the given node. The
+   * path will be split according to {@link Leaf#fromPath(CharSequence)}.
+   *
+   * @see #matchesParent(Leaf)
+   */
+  public boolean matchesParent(CharSequence path) {
+    return matchesParent(Leaf.fromPath(path));
   }
 
   /**
