@@ -52,6 +52,13 @@ public class JacksonMatcherFilter extends SimpleBeanPropertyFilter {
     this.matcher = checkNotNull(matcher);
   }
 
+  /**
+   * Get the matcher this filter is based on.
+   */
+  public Matcher getMatcher() {
+    return matcher;
+  }
+
   @Override
   public void serializeAsField(Object pojo, JsonGenerator jGen, SerializerProvider provider, PropertyWriter writer)
       throws Exception {
