@@ -84,6 +84,11 @@ public class JacksonRequestParamFilterTest {
     }
   }
 
+  /**
+   * Test object for ObjectMapper tests.
+   */
+  private static class TestObject {}
+
   @Test
   @Parameters(method = "params")
   public void testConfigurePartialResponse(Params params) {
@@ -97,7 +102,8 @@ public class JacksonRequestParamFilterTest {
     }
   }
 
-  public Iterable<Params> params() {
+  @SuppressWarnings("UnusedDeclaration")
+  private Iterable<Params> params() {
     return ImmutableList.of(
         Params.absent(""),
         Params.absent("fields="),
@@ -128,9 +134,4 @@ public class JacksonRequestParamFilterTest {
         TestObject.class, introspector, mapper.getDeserializationConfig()));
     assertNull(filterId);
   }
-
-  /**
-   * Test object for ObjectMapper tests.
-   */
-  private static class TestObject {}
 }

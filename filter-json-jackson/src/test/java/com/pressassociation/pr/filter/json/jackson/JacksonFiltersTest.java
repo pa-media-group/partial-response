@@ -44,6 +44,11 @@ public class JacksonFiltersTest {
     public abstract ObjectMapper filterAllOutput(ObjectMapper mapper, CharSequence input);
   }
 
+  /**
+   * Test object for ObjectMapper tests.
+   */
+  private static class TestObject {}
+
   @Test
   @Parameters(method = "methods")
   public void testFilterAllOutput(OverloadedFilterAllOutput method) {
@@ -60,12 +65,8 @@ public class JacksonFiltersTest {
     assertEquals(Matcher.of("foo/bar"), ((JacksonMatcherFilter) propertyFilter).getMatcher());
   }
 
-  public OverloadedFilterAllOutput[] methods() {
+  @SuppressWarnings("UnusedDeclaration")
+  private OverloadedFilterAllOutput[] methods() {
     return OverloadedFilterAllOutput.values();
   }
-
-  /**
-   * Test object for ObjectMapper tests.
-   */
-  private static class TestObject {}
 }
