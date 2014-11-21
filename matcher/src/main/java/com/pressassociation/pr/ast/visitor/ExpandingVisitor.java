@@ -127,11 +127,11 @@ public class ExpandingVisitor extends TransformingVisitor<AstNode> {
     AstNode result = null;
     // then we join all of first with the all of second.
     for (Field secondField : secondFields) {
-      for (Field firctField : firstFields) {
+      for (Field firstField : firstFields) {
         if (result == null) {
-          result = new PathPostfixingVisitor(firctField).applyTo(secondField);
+          result = new PathPostfixingVisitor(firstField).applyTo(secondField);
         } else {
-          Field left = (Field) new PathPostfixingVisitor(firctField).applyTo(secondField);
+          Field left = (Field) new PathPostfixingVisitor(firstField).applyTo(secondField);
           result = new Fields(left, result);
         }
       }

@@ -246,9 +246,5 @@ public class JacksonMatcherFilter extends SimpleBeanPropertyFilter {
     // contains the current parent node for use by recursive calls.
     Node currentNode = new Node();
     boolean serializationMode = false;
-
-    public void addPropertyPath() {
-
-    }
   }
 }
