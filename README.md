@@ -1,7 +1,7 @@
 Partial Response
 ================
 
-[![Build Status](https://travis-ci.org/PressAssociation/partial-response.svg)](https://travis-ci.org/PressAssociation/partial-response)
+[![Build Status](https://travis-ci.org/PressAssociation/partial-response.svg?branch=master)](https://travis-ci.org/PressAssociation/partial-response)
 
 This project provides a library to help with the processing and implementation of
 [partial response](http://googlecode.blogspot.co.uk/2010/03/making-apis-faster-introducing-partial.html) in an API.
