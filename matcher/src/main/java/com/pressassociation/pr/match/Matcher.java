@@ -55,6 +55,13 @@ public abstract class Matcher implements Predicate<Leaf> {
   }
 
   /**
+   * Return a Matcher that will <em>not</em> match any path. Equivalent to {@code Matchers.of("")}.
+   */
+  public static Matcher none() {
+    return NoneMatcher.INSTANCE;
+  }
+
+  /**
    * Get a new Matcher that will match against the given fields string. The string should be a valid fields string,
    * something like {@code items/name(type,value)}.
    *
@@ -65,6 +72,9 @@ public abstract class Matcher implements Predicate<Leaf> {
     // the default case is worth shortcutting
     if ("*".equals(fields)) {
       return all();
+    }
+    if (fields.toString().isEmpty()) {
+      return none();
     }
     return new AstMatcher(new Parser().parse(checkNotNull(fields)));
   }

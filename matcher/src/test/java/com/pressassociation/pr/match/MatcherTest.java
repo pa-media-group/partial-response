@@ -68,11 +68,28 @@ public class MatcherTest {
   }
 
   @Test
+  public void testEmptyIsNone() {
+    assertSame(Matcher.none(), Matcher.of(""));
+  }
+
+  @Test
   public void testMatchesAll() {
     assertTrue(Matcher.of("*").matchesAll());
     assertTrue(Matcher.all().matchesAll());
     assertFalse(Matcher.of("all").matchesAll());
     assertFalse(Matcher.of("all/*").matchesAll());
+    assertFalse(Matcher.of("").matchesAll());
+    assertFalse(Matcher.none().matchesAll());
+  }
+
+  @Test
+  @Parameters({
+      "a",
+      "a/b",
+      "foo/bar/baz"
+  })
+  public void testNoneMatchesNothing(CharSequence path) {
+    assertFalse(Matcher.none().matches(path));
   }
 
   @Test
@@ -120,6 +137,16 @@ public class MatcherTest {
     assertTrue(Matcher.all().matchesParent("my"));
     assertTrue(Matcher.all().matchesParent("my/node"));
     assertTrue(Matcher.all().matchesParent("my/node/continues"));
+  }
+
+  @Test
+  @Parameters({
+      "a",
+      "a/b",
+      "foo/bar/baz"
+  })
+  public void testNoneMatchesNothingParent(CharSequence path) {
+    assertFalse(Matcher.none().matchesParent(path));
   }
 
   @Test
