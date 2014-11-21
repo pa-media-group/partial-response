@@ -58,9 +58,9 @@
 
   <modules>
     <module>check-style</module>
-    <module>field-parser</module>
     <module>filter-json-jackson</module>
     <module>filter-json-jackson-jaxrs</module>
+    <module>matcher</module>
   </modules>
 
   <properties>
