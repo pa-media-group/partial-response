@@ -182,13 +182,13 @@ public class MatcherTest {
   @Test
   @Parameters(method = "rebaseSingleFieldWildcardsParams")
   public void testRebaseSingleFieldWildcards(Matcher source, CharSequence path, Matcher result) throws Exception {
-    System.out.println(source + ".narrow(" + path + ") => " + result);
     assertEquals(result, source.rebase(path));
   }
 
   @Test
   @Parameters(method = "rebaseMultipleFieldsParams")
   public void testRebaseMultipleFields(Matcher source, CharSequence path, Matcher result) throws Exception {
+    System.out.println(source + ".narrow(" + path + ") => " + result);
     assertEquals(result, source.rebase(path));
   }
 

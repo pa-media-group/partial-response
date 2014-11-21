@@ -53,6 +53,26 @@ public class NarrowScopeVisitor extends TransformingVisitor<Optional<AstNode>> {
   }
 
   @Override
+  public void visitFields(Fields fields) {
+    expectedNames++;
+    int originalCount = output.size();
+    super.visitFields(fields);
+    int added = output.size() - originalCount;
+    switch (added) {
+      case 0: break;
+      case 1: break;
+      case 2: break;
+      default:
+        throw unexpectedStackChange(originalCount);
+    }
+  }
+
+  @Override
+  protected boolean beforeFieldsNext(Fields fields) {
+    return super.beforeFieldsNext(fields);
+  }
+
+  @Override
   protected boolean beforePathField(Path path) {
     pathIndex++;
     treeDepth++;
@@ -78,8 +98,6 @@ public class NarrowScopeVisitor extends TransformingVisitor<Optional<AstNode>> {
         // BUT only if we aren't the root or are expecting more nodes, otherwise drop it on the floor
         Field right = (Field) output.removeLast();
         Node left = (Node) output.removeLast();
-        System.out.println(left + "|" + right + "-" + wasWildcard + ",n" + expectedNames + ",t" + treeDepth + ",i"
-                           + pathIndex + ",p" + this.path.size() + "," + output);
         if (left instanceof Wildcard && (treeDepth == 0 || wasWildcard)) {
           if (right instanceof Wildcard) {
             output.add(left);
@@ -93,9 +111,7 @@ public class NarrowScopeVisitor extends TransformingVisitor<Optional<AstNode>> {
         }
         break;
       default:
-        throw new IllegalStateException("Unexpected number of items added to the stack:"
-                                        + " originalCount:" + originalCount
-                                        + " stack:" + output);
+        throw unexpectedStackChange(originalCount);
     }
   }
 
@@ -148,5 +164,11 @@ public class NarrowScopeVisitor extends TransformingVisitor<Optional<AstNode>> {
     } else {
       return Optional.of(getOnlyElement(output));
     }
+  }
+
+  private IllegalStateException unexpectedStackChange(int originalCount) {
+    return new IllegalStateException("Unexpected number of items added to the stack:"
+                                     + " originalCount:" + originalCount
+                                     + " stack:" + output);
   }
 }
