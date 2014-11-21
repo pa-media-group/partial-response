@@ -33,3 +33,14 @@ assertFalse(matcher.matches("/spouse/children"));
 // Note: spouse as a leaf is not included, only certain sub properties are
 assertFalse(matcher.matches("/spouse"));
 ```
+
+Out of the box
+==============
+
+This project consists of a number of sub-projects to cover different use cases for partial-response.
+
+ * [Matcher](matcher) - contains the core pattern parsers and Matcher class. This is the low level functionality behind
+   all partial response support
+ * [Jackson JSON Filter](filter-json-jackson) - Partial response filter for Jackson JSON serialisation.
+ * [JAX-RS Jackson JSON Filter](filter-json-jackson-jaxrs) - JAX-RS response filter for applying partial-response to
+   JAX-RS based REST API responses.
