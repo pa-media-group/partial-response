@@ -6,7 +6,7 @@
   <parent>
     <artifactId>partial-response</artifactId>
     <groupId>com.pressassociation.partial-response</groupId>
-    <version>1.0</version>
+    <version>1.1-SNAPSHOT</version>
   </parent>
 
   <artifactId>filter-json-jackson</artifactId>
