@@ -96,11 +96,17 @@ public class NarrowScopeVisitor extends TransformingVisitor<Optional<AstNode>> {
   @Override
   public void visitWord(Word word) {
     expectedNames--;
-    if (wasWildcard) {
-      pathIndex--;
+    if (pathIndex >= path.size()) {
       output.add(word);
-    } else if (pathIndex >= path.size()) {
-      output.add(word);
+    } else if (wasWildcard) {
+      String pathPart = path.get(pathIndex);
+      boolean matchesWord = pathPart.equals(word.getStringValue());
+      if (!matchesWord) {
+        wasWildcard = false;
+        output.add(word);
+      } else {
+        pathIndex--;
+      }
     } else {
       String pathPart = path.get(pathIndex);
       boolean matchesWord = pathPart.equals(word.getStringValue());
