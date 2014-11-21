@@ -24,7 +24,7 @@ To use this in your Maven project simply include the dependency
 ```
 
 Examples
-========
+--------
 
 Basic use in your application will generally be of the form:
 
@@ -48,7 +48,7 @@ assertFalse(matcher.matches("/spouse"));
 ```
 
 Out of the box
-==============
+--------------
 
 This project consists of a number of sub-projects to cover different use cases for partial-response.
 
