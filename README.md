@@ -10,6 +10,19 @@ The core library consists of parsers, AST, visitors and matcher for working with
 functionality may be added over time including http filters for xml and json to post process your responses for
 inclusion in the partial response.
 
+Usage
+-----
+
+To use this in your Maven project simply include the dependency
+
+```xml
+<dependency>
+  <groupId>com.pressassociation.partial-response</groupId>
+  <artifactId>matcher</artifactId>
+  <version>1.0</version>
+</dependency>
+```
+
 Examples
 ========
 
