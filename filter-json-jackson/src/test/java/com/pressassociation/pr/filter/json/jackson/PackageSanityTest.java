@@ -5,7 +5,7 @@ import com.google.common.testing.AbstractPackageSanityTests;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.PropertyWriter;
-import com.pressassociation.fire.partialresponse.fields.match.Matcher;
+import com.pressassociation.pr.match.Matcher;
 
 import static org.mockito.Mockito.mock;
 

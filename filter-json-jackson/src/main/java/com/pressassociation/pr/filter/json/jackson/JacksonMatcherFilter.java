@@ -11,8 +11,8 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.BeanPropertyWriter;
 import com.fasterxml.jackson.databind.ser.PropertyWriter;
 import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
-import com.pressassociation.fire.partialresponse.fields.match.Leaf;
-import com.pressassociation.fire.partialresponse.fields.match.Matcher;
+import com.pressassociation.pr.match.Leaf;
+import com.pressassociation.pr.match.Matcher;
 
 import java.util.Deque;
 

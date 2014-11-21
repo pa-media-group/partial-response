@@ -8,7 +8,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.introspect.Annotated;
 import com.fasterxml.jackson.databind.introspect.AnnotatedClass;
 import com.fasterxml.jackson.databind.ser.PropertyFilter;
-import com.pressassociation.fire.partialresponse.fields.match.Matcher;
+import com.pressassociation.pr.match.Matcher;
 
 import org.jboss.resteasy.spi.ResteasyUriInfo;
 import org.junit.Test;

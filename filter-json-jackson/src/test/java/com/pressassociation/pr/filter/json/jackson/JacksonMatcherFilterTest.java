@@ -8,7 +8,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
-import com.pressassociation.fire.partialresponse.fields.match.Matcher;
+import com.pressassociation.pr.match.Matcher;
 
 import org.junit.Test;
 
