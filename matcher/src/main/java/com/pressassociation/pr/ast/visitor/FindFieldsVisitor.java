@@ -33,10 +33,7 @@ import com.pressassociation.pr.ast.*;
 
 import java.util.List;
 
-import javax.annotation.Nullable;
-
 import static com.google.common.base.Objects.firstNonNull;
-import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkState;
 
 /**
@@ -93,8 +90,8 @@ public class FindFieldsVisitor extends TransformingVisitor<Iterable<Field>> {
     }
     List<Field> allButLast = Lists.transform(result, new Function<Fields, Field>() {
       @Override
-      public Field apply(@Nullable Fields input) {
-        return checkNotNull(input).getField();
+      public Field apply(Fields input) {
+        return input.getField();
       }
     });
     return Iterables.concat(ImmutableList.of(getEnd()), Lists.reverse(allButLast));
