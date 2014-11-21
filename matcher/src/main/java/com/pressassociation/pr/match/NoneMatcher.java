@@ -49,7 +49,7 @@ class NoneMatcher extends Matcher {
   }
 
   @Override
-  public Matcher narrowScope(Leaf path) {
+  public Matcher rebase(Leaf path) {
     return this;
   }
 

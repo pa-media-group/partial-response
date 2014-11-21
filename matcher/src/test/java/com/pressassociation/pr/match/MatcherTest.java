@@ -162,50 +162,117 @@ public class MatcherTest {
   }
 
   @Test
-  @Parameters(method = "narrowScopeParams")
-  public void testNarrowScope(Matcher source, CharSequence path, Matcher result) throws Exception {
-    assertEquals(result, source.narrowScope(path));
+  @Parameters(method = "rebaseWildcardParams")
+  public void testRebaseWildcards(Matcher source, CharSequence path, Matcher result) throws Exception {
+    assertEquals(result, source.rebase(path));
+  }
+
+  @Test
+  @Parameters(method = "rebaseSingleEntryParams")
+  public void testRebaseSingleEntry(Matcher source, CharSequence path, Matcher result) throws Exception {
+    assertEquals(result, source.rebase(path));
+  }
+
+  @Test
+  @Parameters(method = "rebaseSingleFieldParams")
+  public void testRebaseSingleField(Matcher source, CharSequence path, Matcher result) throws Exception {
+    assertEquals(result, source.rebase(path));
+  }
+
+  @Test
+  @Parameters(method = "rebaseSingleFieldWildcardsParams")
+  public void testRebaseSingleFieldWildcards(Matcher source, CharSequence path, Matcher result) throws Exception {
+    System.out.println(source + ".narrow(" + path + ") => " + result);
+    assertEquals(result, source.rebase(path));
+  }
+
+  @Test
+  @Parameters(method = "rebaseMultipleFieldsParams")
+  public void testRebaseMultipleFields(Matcher source, CharSequence path, Matcher result) throws Exception {
+    assertEquals(result, source.rebase(path));
+  }
+
+  @Test
+  @Parameters(method = "rebaseSubSelectionParams")
+  public void testRebaseSubSelection(Matcher source, CharSequence path, Matcher result) throws Exception {
+    assertEquals(result, source.rebase(path));
+  }
+
+  @Test
+  @Parameters(method = "rebaseSubSelectionNestedParams")
+  public void testRebaseSubSelectionNested(Matcher source, CharSequence path, Matcher result) throws Exception {
+    assertEquals(result, source.rebase(path));
+  }
+
+  @Test
+  @Parameters(method = "rebaseJavadocParams")
+  public void testRebaseJavadocParams(Matcher source, CharSequence path, Matcher result) throws Exception {
+    assertEquals(result, source.rebase(path));
   }
 
   @SuppressWarnings("UnusedDeclaration")
-  private Iterable<Object[]> narrowScopeParams() {
+  private Iterable<Object[]> rebaseWildcardParams() {
     ImmutableList.Builder<Object[]> args = ImmutableList.builder();
 
-//    // wildcards
-//    args.add(
-//        $(Matcher.all(), "anything", Matcher.all()),
-//        $(Matcher.all(), "any/path", Matcher.all())
-//    );
-//    // single entry source
-//    args.add(
-//        $(Matcher.of("simple"), "simple", Matcher.all()),
-//        $(Matcher.of("simple"), "simple/path", Matcher.all()),
-//        $(Matcher.of("simple"), "unknown", Matcher.none())
-//    );
-//    // single field source
-//    args.add(
-//        $(Matcher.of("a/path"), "a", Matcher.of("path")),
-//        $(Matcher.of("a/path"), "a/path", Matcher.all()),
-//        $(Matcher.of("a/path"), "unknown", Matcher.none()),
-//        $(Matcher.of("a/path"), "a/unknown", Matcher.none()),
-//        $(Matcher.of("a/b/c"), "a", Matcher.of("b/c")),
-//        $(Matcher.of("a/b/c"), "a/b", Matcher.of("c")),
-//        $(Matcher.of("a/b/c"), "a/b/c", Matcher.all())
-//    );
+    // wildcards
+    args.add(
+        $(Matcher.all(), "anything", Matcher.all()),
+        $(Matcher.all(), "any/path", Matcher.all())
+    );
+
+    return args.build();
+  }
+
+  @SuppressWarnings("UnusedDeclaration")
+  private Iterable<Object[]> rebaseSingleEntryParams() {
+    ImmutableList.Builder<Object[]> args = ImmutableList.builder();
+
+    // single entry source
+    args.add(
+        $(Matcher.of("simple"), "simple", Matcher.all()),
+        $(Matcher.of("simple"), "simple/path", Matcher.all()),
+        $(Matcher.of("simple"), "unknown", Matcher.none())
+    );
+
+    return args.build();
+  }
+
+  @SuppressWarnings("UnusedDeclaration")
+  private Iterable<Object[]> rebaseSingleFieldParams() {
+    ImmutableList.Builder<Object[]> args = ImmutableList.builder();
+
+    // single field source
+    args.add(
+        $(Matcher.of("a/path"), "a", Matcher.of("path")),
+        $(Matcher.of("a/path"), "a/path", Matcher.all()),
+        $(Matcher.of("a/path"), "unknown", Matcher.none()),
+        $(Matcher.of("a/path"), "a/unknown", Matcher.none()),
+        $(Matcher.of("a/b/c"), "a", Matcher.of("b/c")),
+        $(Matcher.of("a/b/c"), "a/b", Matcher.of("c")),
+        $(Matcher.of("a/b/c"), "a/b/c", Matcher.all())
+    );
+
+    return args.build();
+  }
+
+  @SuppressWarnings("UnusedDeclaration")
+  private Iterable<Object[]> rebaseSingleFieldWildcardsParams() {
+    ImmutableList.Builder<Object[]> args = ImmutableList.builder();
+
     // simple field, wildcards
     args.add(
-//        $(Matcher.of("a/*"), "a", Matcher.all()),
-//        $(Matcher.of("a/*"), "a/b", Matcher.all()),
-//        $(Matcher.of("a/*"), "a/b/c", Matcher.all()),
-//        $(Matcher.of("a/b/*"), "a", Matcher.of("b/*")),
-//        $(Matcher.of("a/b/*"), "a/b", Matcher.all()),
-//        $(Matcher.of("a/b/*"), "a/b/c", Matcher.all()),
-//        $(Matcher.of("*/a"), "a", Matcher.of("a,*/a")),
-//        $(Matcher.of("*/a"), "anything", Matcher.of("a,*/a")),
-//        $(Matcher.of("*/a"), "any/path", Matcher.of("a,*/a")),
-//        $(Matcher.of("*/a/b"), "a", Matcher.of("a/b,*/a/b")),
-//        $(Matcher.of("*/a/b"), "anything", Matcher.of("a/b,*/a/b")),
-//        $(Matcher.of("*/a/b"), "any/path", Matcher.of("a/b,*/a/b")),
+        $(Matcher.of("a/*"), "a", Matcher.all()),
+        $(Matcher.of("a/*"), "a/b", Matcher.all()),
+        $(Matcher.of("a/*"), "a/b/c", Matcher.all()),
+        $(Matcher.of("a/b/*"), "a", Matcher.of("b/*")),
+        $(Matcher.of("a/b/*"), "a/b", Matcher.all()),
+        $(Matcher.of("a/b/*"), "a/b/c", Matcher.all()),
+        $(Matcher.of("*/a"), "a", Matcher.of("a,*/a")),
+        $(Matcher.of("*/a"), "anything", Matcher.of("a,*/a")),
+        $(Matcher.of("*/a"), "any/path", Matcher.of("a,*/a")),
+        $(Matcher.of("*/a/b"), "a", Matcher.of("a/b,*/a/b")),
+        $(Matcher.of("*/a/b"), "anything", Matcher.of("a/b,*/a/b")),
+        $(Matcher.of("*/a/b"), "any/path", Matcher.of("a/b,*/a/b")),
         $(Matcher.of("*/a/b"), "any/a", Matcher.of("b,*/b")),
         $(Matcher.of("*/a/b"), "any/path/a", Matcher.of("b,*/b")),
         $(Matcher.of("*/a/b"), "any/path/a/b", Matcher.all()),
@@ -216,6 +283,14 @@ public class MatcherTest {
         $(Matcher.of("a/*/b"), "a/x/b", Matcher.all()),
         $(Matcher.of("a/*/b"), "a/b/b", Matcher.all())
     );
+
+    return args.build();
+  }
+
+  @SuppressWarnings("UnusedDeclaration")
+  private Iterable<Object[]> rebaseMultipleFieldsParams() {
+    ImmutableList.Builder<Object[]> args = ImmutableList.builder();
+
     // multiple fields
     args.add(
         $(Matcher.of("a,b,c"), "a", Matcher.all()),
@@ -226,6 +301,14 @@ public class MatcherTest {
         $(Matcher.of("a,b/c"), "b/c", Matcher.all()),
         $(Matcher.of("a,b/c"), "d", Matcher.none())
     );
+
+    return args.build();
+  }
+
+  @SuppressWarnings("UnusedDeclaration")
+  private Iterable<Object[]> rebaseSubSelectionParams() {
+    ImmutableList.Builder<Object[]> args = ImmutableList.builder();
+
     // sub-selections
     args.add(
         $(Matcher.of("a(b,c)"), "a", Matcher.of("b,c")),
@@ -242,6 +325,14 @@ public class MatcherTest {
         $(Matcher.of("a(b,c)/d"), "a/b/foo", Matcher.none()),
         $(Matcher.of("a(b,c)/d"), "a/c/foo", Matcher.none())
     );
+
+    return args.build();
+  }
+
+  @SuppressWarnings("UnusedDeclaration")
+  private Iterable<Object[]> rebaseSubSelectionNestedParams() {
+    ImmutableList.Builder<Object[]> args = ImmutableList.builder();
+
     // sub-selection nested
     args.add(
         $(Matcher.of("a(b,c(d,e/f)/h)/i"), "a", Matcher.of("b/i,c(d,e/f)/h/i")),
@@ -279,6 +370,13 @@ public class MatcherTest {
         $(Matcher.of("a(b,c(d,e/f)/h)/i"), "a/c/e/f/h/foo", Matcher.none()),
         $(Matcher.of("a(b,c(d,e/f)/h)/i"), "a/c/e/f/h/foo/i", Matcher.none())
     );
+
+    return args.build();
+  }
+
+  @SuppressWarnings("UnusedDeclaration")
+  private Iterable<Object[]> rebaseJavadocParams() {
+    ImmutableList.Builder<Object[]> args = ImmutableList.builder();
 
     // javadoc examples
     args.add(

@@ -73,7 +73,7 @@ class AllMatcher extends Matcher {
     return Wildcard.getSharedInstance();
   }
 
-  public Matcher narrowScope(Leaf path) {
+  public Matcher rebase(Leaf path) {
     checkNotNull(path);
     return this;
   }

@@ -67,7 +67,7 @@ class AstMatcher extends Matcher {
   }
 
   @Override
-  public Matcher narrowScope(Leaf path) {
+  public Matcher rebase(Leaf path) {
     Optional<AstNode> astNode = new NarrowScopeVisitor(path.getPath()).applyTo(fields);
     if (astNode.isPresent()) {
       if (Wildcard.getSharedInstance().equals(astNode.get())) {

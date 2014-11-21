@@ -144,8 +144,8 @@ public abstract class Matcher implements Predicate<Leaf> {
    *   <li>{@code "random/path" -> Matcher.none()}</li>
    * </ul>
    */
-  public Matcher narrowScope(CharSequence path) {
-    return narrowScope(Leaf.fromPath(path));
+  public Matcher rebase(CharSequence path) {
+    return rebase(Leaf.fromPath(path));
   }
 
   /**
@@ -162,7 +162,7 @@ public abstract class Matcher implements Predicate<Leaf> {
    *   <li>{@code "random/path" -> Matcher.none()}</li>
    * </ul>
    */
-  public abstract Matcher narrowScope(Leaf path);
+  public abstract Matcher rebase(Leaf path);
 
   /**
    * Transform the words in the given matcher according to the nameTransformer given. This can be used to fulfil

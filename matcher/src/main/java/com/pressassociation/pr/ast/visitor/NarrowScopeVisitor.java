@@ -78,8 +78,14 @@ public class NarrowScopeVisitor extends TransformingVisitor<Optional<AstNode>> {
         // BUT only if we aren't the root or are expecting more nodes, otherwise drop it on the floor
         Field right = (Field) output.removeLast();
         Node left = (Node) output.removeLast();
-        if (left instanceof Wildcard) {
-          output.add(new Fields(right, new Path(left, right)));
+        System.out.println(left + "|" + right + "-" + wasWildcard + ",n" + expectedNames + ",t" + treeDepth + ",i"
+                           + pathIndex + ",p" + this.path.size() + "," + output);
+        if (left instanceof Wildcard && (treeDepth == 0 || wasWildcard)) {
+          if (right instanceof Wildcard) {
+            output.add(left);
+          } else {
+            output.add(new Fields(right, new Path(left, right)));
+          }
         } else {
           if (expectedNames > 0 || treeDepth > 0) {
             output.addLast(new Path(left, right));
@@ -99,13 +105,21 @@ public class NarrowScopeVisitor extends TransformingVisitor<Optional<AstNode>> {
     if (pathIndex >= path.size()) {
       output.add(word);
     } else if (wasWildcard) {
-      String pathPart = path.get(pathIndex);
-      boolean matchesWord = pathPart.equals(word.getStringValue());
-      if (!matchesWord) {
+      String wordPart = word.getStringValue();
+      boolean matchesAny = false;
+      int i = pathIndex;
+      for (; i < path.size(); i++) {
+        if (path.get(i).equals(wordPart)) {
+          matchesAny = true;
+          break;
+        }
+      }
+
+      if (matchesAny) {
         wasWildcard = false;
-        output.add(word);
+        pathIndex = i;
       } else {
-        pathIndex--;
+        output.add(word);
       }
     } else {
       String pathPart = path.get(pathIndex);
@@ -121,15 +135,10 @@ public class NarrowScopeVisitor extends TransformingVisitor<Optional<AstNode>> {
 
   @Override
   public void visitWildcard(Wildcard wildcard) {
-    wasWildcard = true;
     expectedNames--;
-//    pathIndex--;
-//    if (expectedNames == 0) {
-      output.add(wildcard);
-//    } else {
-      // the wildcard is not at the end of a path, because of this we need to re-work the tree a little to add an extra
-      // field: */a => a,*/a
-//    }
+    // only mark as a wildcard if we were about to actually match a part of the path
+    wasWildcard = pathIndex < path.size();
+    output.add(wildcard);
   }
 
   @Override
