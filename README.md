@@ -23,10 +23,8 @@ To use this in your Maven project simply include the dependency
 </dependency>
 ```
 
-Examples
---------
-
-Basic use in your application will generally be of the form:
+This will give you the `Matcher` class which is the core concept for partial response. The `Matcher` gives you a way to
+parse and match against a partial response pattern.
 
 ```java
 Matcher matcher = Matcher.of("name,address,spouse(name,address),children/*");
